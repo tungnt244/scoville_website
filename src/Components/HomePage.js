@@ -42,7 +42,7 @@ export default class HomePage extends React.Component {
                     </section>
                     <hr className="underlineforheading-COMPANY"/>
                     <section><br/><br/>
-                        <p className="red-text">{`OUR MISSION`}</p>
+                        <p className="red-text">{`OUR MISSION!!!!!`}</p>
                         <p className="japanese-text">
                             {`
                             世界に通用する人と事業を創り、
