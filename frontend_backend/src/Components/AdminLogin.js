@@ -1,5 +1,8 @@
 import React, {Component} from 'react'
 import {Form, Col, ControlLabel, FormControl, FormGroup, Button} from 'react-bootstrap'
+import axios from 'axios'
+import {url} from '../config'
+
 export default class AdminLogin extends Component {
 
     constructor(props){
@@ -26,9 +29,17 @@ export default class AdminLogin extends Component {
 
     handleLogin = (e) => {
         e.preventDefault()
-        console.log('email', this.state.email)
-        console.log('password', this.state.password)
+        let user = {
+            email: this.state.email,
+            password: this.state.password
+        }
+        axios.post(url+'/login', user).then( function(response){
+            console.log('response: ',response)
+        }).catch(function(error){
+            console.log('error: ',error)
+        })
     }
+
     render(){
         return(
             <Form horizontal>
