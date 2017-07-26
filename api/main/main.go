@@ -7,6 +7,7 @@ import (
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 
+	"github.com/tungnt244/scoville_website/api/main/authentication"
 	"github.com/tungnt244/scoville_website/api/main/config"
 	"github.com/tungnt244/scoville_website/api/main/db"
 	"github.com/tungnt244/scoville_website/api/main/handler"
@@ -45,6 +46,17 @@ func main() {
 	// e.DELETE("/product/delete/:id", handler.DeleteProduct)
 
 	// e.POST("/user/create", handler.CreateNewUser)
+	e.POST("/login", authentication.Login)
+
+	// Unauthenticated route
+	a := e.Group("/")
+	a.Use(middleware.JWT([]byte("secret")))
+	a.GET("/", authentication.Accessible)
+
+	// Restricted group
+	r := e.Group("/restricted")
+	r.Use(middleware.JWT([]byte("secret")))
+	r.GET("", authentication.Restricted)
 
 	e.Logger.Fatal(e.Start(":4444"))
 }

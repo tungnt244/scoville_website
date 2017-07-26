@@ -24,6 +24,11 @@ func (m *DBManager) GetUserById(id string) (user model.User, err error) {
 
 }
 
+func (m *DBManager) GetUserByEmailAndPass(e string, p string) (user model.User, err error) {
+	err = m.database.Where(&model.User{Email: e, Password: p}).Find(&user).Error
+	return
+}
+
 // func (m *DBManager) GetAllProducts() (product model.Product, err error) {
 // 	err = m.database.First(&product).Error
 // 	return
