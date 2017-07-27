@@ -12,7 +12,7 @@ export default function(callback){
                 'Authorization': token
             }
         });
-
+        
         instance.get()
         .then(response => {
             console.log('response', response)
