@@ -3,7 +3,7 @@ body{
 }
 .big-word{
   font-family: Marion;
-  font-size: 1.8vmax;
+  font-size: 1.7vmax;
   font-weight: bold;
   color: #070707;
 }
@@ -22,6 +22,7 @@ body{
 }
 .big-line-space{
 	line-height: 190%;
+  white-space: normal;
 }
 .red-text{
 	color:  #971747;
@@ -33,15 +34,18 @@ body{
 	font-size: 2.0vmax;
 	font-family:HiraMaruPro-W4;
 	color: #333333;
+  white-space: normal; 
 }
 #small{
 	font-size: 1.6vmax;
 	font-family:HiraMaruPro-W4;
 	color: #333333;
 }
-#culture{
-	white-space: pre;	
-	width: 50vmax;
+#twoline{
+  white-space: normal;
+}
+#twoline1{
+  white-space: normal;
 }
 hr.style-eight {
 	width:80%;
@@ -60,8 +64,10 @@ hr.style-eight:after {
     padding: 0 0.25em;
     background: white;
 }
-#contact-container{
+#CONTACT-container{
 	width: 40%;
+  padding-top: 5%;
+  padding-bottom: 6%;
 }
 #COMPANY{
 	border-top: none;
@@ -104,6 +110,11 @@ hr.style-eight:after {
 	border-width: 5px;
 	border-color: grey;
 }
+.underlineforheading-RECRUITMENT{
+  width:15%;
+  border-width: 5px;
+  border-color: grey;
+}
 .underlineforheading-COMPANY{
 	width:12.5%;
 	border-width: 5px;
@@ -119,11 +130,20 @@ hr.style-eight:after {
 	border-width: 5px;
 	border-color: grey;
 }
+
+.underlineforheading-ACCESS{
+  width:12%;
+  border-width: 5px;
+  border-color: grey;
+}
 .contact-text{
   font-family: HiraMaruPro-W4;
   font-size: 1.7vmax;
   text-align: left;
   color: #333333;
+}
+#apply-button{
+  width:50%;
 }
 .button-grey{
 	width: 100%;
@@ -139,7 +159,22 @@ hr.style-eight:after {
     cursor: pointer;
     border-radius: 100px;
 }
-.grey-form{
+#user-message{
+  border-radius: 8px;
+  background-color: #faf7f4;
+  border: solid 1px #979797;
+}
+#user-phone-number{
+  border-radius: 8px;
+  background-color: #faf7f4;
+  border: solid 1px #979797;
+}
+#user-email{
+  border-radius: 8px;
+  background-color: #faf7f4;
+  border: solid 1px #979797;
+}
+#user-name{
   border-radius: 8px;
   background-color: #faf7f4;
   border: solid 1px #979797;
@@ -147,4 +182,72 @@ hr.style-eight:after {
 .page-header{
 	border-bottom: none;
 }
-
+.row1{
+  border-bottom: solid;
+  border-width: 2px;
+  padding-top:2%; 
+  padding-bottom:2%;
+}
+#news-container{
+  width:60%;
+}
+.imgcenter{
+   margin: 0 auto;
+}
+.col-md-8{
+  white-space: normal;
+}
+.col-md-3{
+  white-space: normal;
+}
+.access-1{
+  white-space: normal;
+  font-family: HiraMaruPro-W4;
+  color: #777777;
+  font-size: 1.9vmax;
+  padding-bottom:2%;
+  padding-bottom: 2%;
+}
+.access-2 {
+  white-space: normal;
+  font-family: HiraMaruPro-W4;
+  font-size: 1.9vmax;
+  color: #333333;
+  padding-bottom:2%;
+  padding-bottom: 2%;
+}
+#COMPANY-container{
+  padding-top: 6%;
+  padding-bottom: 6.8%;
+}
+.RECRUITMENT-container{
+  padding-top: 6%;
+  padding-bottom: 6.8%;
+}
+#SERVICES-container{
+  padding-top: 7%;
+  padding-bottom: 7.5%; 
+}
+.bottom-padding{
+  padding-bottom: 7%;
+}
+#ACCESS-container{
+  padding-top: 7%;
+  padding-bottom: 8%; 
+}
+.left-padding{
+  padding-left: 10%;
+}
+.padding-popup{
+  padding-left: 3%;
+  padding-right: 3%;
+}
+.padding-top{
+  padding-top:2vmax;
+}
+.no-padding{
+  margin-right: 0px; 
+  padding-right: 0px;
+  margin-left: 0px;
+  padding-left: 0px;   
+}
