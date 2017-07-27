@@ -7,7 +7,6 @@ import (
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 
-	"github.com/tungnt244/scoville_website/api/main/authentication"
 	"github.com/tungnt244/scoville_website/api/main/config"
 	"github.com/tungnt244/scoville_website/api/main/db"
 	"github.com/tungnt244/scoville_website/api/main/handler"
@@ -35,28 +34,28 @@ func main() {
 
 	db.SetupConnection(gormDB)
 
+	//RESTFUL api for user
 	e.GET("/users/:id", handler.GetUser)
-	// fmt.Sprintf(db.Manager.databse)
-	// e.GET("/product/post", handler.CreateProduct)
-	// e.DELETE("/product/delete", handler.DeleteProduct)
-	// e.GET("/", handler.Hello)
-	// e.GET("/product/create", handler.CreateProduct)
-	// e.PUT("/product/update/:id", handler.UpdateProduct)
-	// e.GET("/products", handler.GetAllProduct)
-	// e.DELETE("/product/delete/:id", handler.DeleteProduct)
+	e.POST("/users", handler.CreateUser)
+	e.PUT("/users/:id", handler.UpdateUser)
 
-	// e.POST("/user/create", handler.CreateNewUser)
-	e.POST("/login", authentication.Login)
+	// e.DELETE("/users/:id", handler.DeleteUser)
 
-	// Unauthenticated route
-	a := e.Group("/")
-	a.Use(middleware.JWT([]byte("secret")))
-	a.GET("/", authentication.Accessible)
+	//Check valid or invalid user
+	e.POST("/login", handler.Login)
 
-	// Restricted group
-	r := e.Group("/restricted")
-	r.Use(middleware.JWT([]byte("secret")))
-	r.GET("", authentication.Restricted)
+	//RESTFUL api for news
+	e.GET("/news/:id", handler.GetNews)
+	e.POST("/news", handler.CreateNews)
+	e.PUT("/news/:id", handler.UpdateNews)
+	e.DELETE("/news/:id", handler.DeleteNews)
 
+	//RESTFUL api for formRecruitment
+	// e.GET("/news/:id", handler.GetNews)
+	e.POST("/forms/recruitment", handler.CreateFormRecruitment)
+	// e.PUT("/news/:id", handler.UpdateNews)
+	// e.DELETE("/news/:id", handler.DeleteNews)
+
+	//Connect to localhost with port:4444
 	e.Logger.Fatal(e.Start(":4444"))
 }

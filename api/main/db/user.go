@@ -29,6 +29,17 @@ func (m *DBManager) GetUserByEmailAndPass(e string, p string) (user model.User, 
 	return
 }
 
+func (m *DBManager) SaveUser(e string, p string) (err error) {
+	err = m.database.Create(&model.User{Email: e, Password: p}).Error
+	return
+
+}
+
+func (m *DBManager) UpdateUserInfo(id string, u *model.User) (user model.User, err error) {
+	err = m.database.Find(&user, id).Update(&model.User{Email: u.Email, Password: string(u.Password)}).Error
+	return
+}
+
 // func (m *DBManager) GetAllProducts() (product model.Product, err error) {
 // 	err = m.database.First(&product).Error
 // 	return
