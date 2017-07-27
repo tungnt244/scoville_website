@@ -44,7 +44,7 @@ func CreateUser(c echo.Context) error {
 		panic(err)
 	}
 
-	if helper.ValidateEmail(u.Email) {
+	if helper.ValidateEmail(u.Email) == false {
 		return c.JSON(http.StatusBadRequest, "Not a valid Email")
 	}
 

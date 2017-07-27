@@ -29,6 +29,11 @@ func (m *DBManager) GetUserByEmailAndPass(e string, p string) (user model.User, 
 	return
 }
 
+func (m *DBManager) CheckExistedEmail(e string) (user model.User, err error) {
+	err = m.database.Where(&model.User{Email: e, Password: p}).Find(&user).Error
+	return
+}
+
 func (m *DBManager) SaveUser(e string, p string) (err error) {
 	err = m.database.Create(&model.User{Email: e, Password: p}).Error
 	return
