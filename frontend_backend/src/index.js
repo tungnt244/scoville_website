@@ -31,7 +31,7 @@ app.post('/admin/login', (req, res) => {
       token: token
     })
   }
-  return res.send("it's okey")
+  return res.send("it's not okey")
 })
 
 app.get('/hello', (req, res) => {

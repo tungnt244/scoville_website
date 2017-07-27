@@ -14,14 +14,12 @@ export default class AdminLogin extends Component {
     }
 
     changeEmail = (e) => {
-        console.log(e.target.value)
         this.setState({
             email: e.target.value
         })
     }
 
     changePassword = (e) => {
-        console.log(e.target.value)
         this.setState({
             password: e.target.value
         })
@@ -35,7 +33,7 @@ export default class AdminLogin extends Component {
         }
         axios.post(url+'/admin/login', user).then( function(response){
             localStorage.setItem('token', response.data.token)
-            console.log('response: ',response)
+            console.log('response admin login: ',response)
         }).catch(function(error){
             console.log('error: ',error)
         })
