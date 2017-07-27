@@ -33,7 +33,8 @@ export default class AdminLogin extends Component {
             email: this.state.email,
             password: this.state.password
         }
-        axios.post(url+'/login', user).then( function(response){
+        axios.post(url+'/admin/login', user).then( function(response){
+            localStorage.setItem('token', response.data.token)
             console.log('response: ',response)
         }).catch(function(error){
             console.log('error: ',error)
