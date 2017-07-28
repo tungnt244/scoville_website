@@ -8,15 +8,15 @@ import (
 
 type User struct {
 	gorm.Model
-	Email    string `gorm:"type:varchar(100);unique_index" json:"email"`
-	Password string `json:"password"`
+	Email    string `gorm:"type:varchar(100);unique_index" json:"email" validate:"required"`
+	Password string `json:"password" validate:"required"`
 	Role     string `json:"string"`
 }
 
 type News struct {
 	// gorm.Model
 	ID          uint   `gorm:"primary_key"`
-	Title       string `gorm:"size:255" json:"title"`
+	Title       string `gorm:"size:255" json:"title" validate:"required"`
 	Content     string `json:"content"`
 	Picture     string
 	Description string `grom:"size:255" json:"description"`

@@ -14,6 +14,16 @@ func (m *DBManager) GetNewsById(id string) (n model.News, err error) {
 	return
 }
 
+func (m *DBManager) GetAll() (n []model.News, err error) {
+	err = m.database.Find(&n).Error
+	return
+}
+
+func (m *DBManager) GetAllBriefInfo() (n []model.News, err error) {
+	err = m.database.Select([]string{"title", "picture", "description"}).Find(&n).Error
+	return
+}
+
 func (m *DBManager) UpdateNewsInfo(id string, n *model.News) (news model.News, err error) {
 	err = m.database.Find(&news, id).Update(&model.News{Title: n.Title, Content: n.Content, Picture: n.Picture, Description: n.Description}).Error
 	return

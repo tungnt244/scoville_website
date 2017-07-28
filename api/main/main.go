@@ -7,14 +7,19 @@ import (
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 
+	// "fmt"
 	"github.com/tungnt244/scoville_website/api/main/config"
 	"github.com/tungnt244/scoville_website/api/main/db"
 	"github.com/tungnt244/scoville_website/api/main/handler"
+	"gopkg.in/go-playground/validator.v9"
 )
 
 func main() {
+
 	//Create echo instance
 	e := echo.New()
+	e.Validator = &db.CustomValidator{ValidatorCustom: validator.New()}
+
 	// Middleware
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
@@ -45,6 +50,8 @@ func main() {
 	e.POST("/login", handler.Login)
 
 	//RESTFUL api for news
+	e.GET("/news", handler.GetAllNews)
+	e.GET("/news/brief", handler.GetAllNews)
 	e.GET("/news/:id", handler.GetNews)
 	e.POST("/news", handler.CreateNews)
 	e.PUT("/news/:id", handler.UpdateNews)
