@@ -69,7 +69,7 @@ app.get('*', (req, res) => {
   );
 });
 
-const port = 8080;
+const port = 3000;
 app.listen(port, err => {
   if (err) {
     return console.error(err);
