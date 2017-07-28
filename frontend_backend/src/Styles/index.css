@@ -1,47 +1,97 @@
 body{
-	padding-top: 75px;
+	padding-top: 7.1vmax;
+}
+@media screen and (max-width: 378px) {
+    body {
+        padding-top: 13.5vw;
+         }
+}
+ul.nav.navbar-nav.navbar-right{
+  padding-top: 2%;
+}
+a.big-word.text-right{
+  padding-left: 5%;
+  padding-right: 5%;
+  text-align: center;
+  white-space: pre;
 }
 .big-word{
-  font-family: Marion;
-  font-size: 1.8vmax;
+  font-family: Helvetica-Bold;
   font-weight: bold;
+  text-align: center;
   color: #070707;
+  font-size: 1.7vmax;
+  background-color: #e0dadb;
 }
 .grey-background{
 	background-color: #f6f6f6;
 }
 #my-navbar{
-	font-family: Marion;
-	background-color: white;
-	border:none;
+	font-family: Helvetica-Bold;
+  background-color: #e0dadb;
+}
+div#nav-container.container{
+  margin-left: 0%;
+  padding-left: 0%;
+  height:80%;
+}
+.nav>li>a>img{
+  vertical-align: top;
+}
+a#logo.navbar-left{
+  padding-top: 0%;
+  padding-left: 0%;
+}
+#logo{
+  background-color: #e0dadb;
+  border: none;
+  text-align: left;
+  padding-right: 0px;
+  padding-bottom: 0px;
 }
 .section-heading{
-  font-family: Marion;
-  font-size: 2.6vmax;
+  font-family: Helvetica-Bold;
+  font-size: 2.9vmax;
   color: #606366;
 }
 .big-line-space{
 	line-height: 190%;
+  white-space: normal;
 }
 .red-text{
-	color:  #971747;
-	font-family: Arial;
-	font-weight: bold;
-	font-size: 2.4vmax;	 
+  font-family: Helvetica-Bold;
+  font-size: 2.4vmax;
+  font-weight: bold;
+  text-align: center;
+  color: #e84448;
+  margin-top: 7%;
 }
 .japanese-text{
 	font-size: 2.0vmax;
-	font-family:HiraMaruPro-W4;
-	color: #333333;
+	font-family: Hiragino Kaku Gothic Pro;
+  line-height: 1.75;
+  text-align: center;
+  color: #000000;
+  font-weight: 550;
+}
+.company-text{
+  font-size: 2.1vmax;
+  font-family: Hiragino Kaku Gothic Pro;
+  line-height: 1.75;
+  text-align: center;
+  color: black;
+  font-weight: 900; 
 }
 #small{
 	font-size: 1.6vmax;
-	font-family:HiraMaruPro-W4;
+	font-family:Hiragino Kaku Gothic Pro;
 	color: #333333;
 }
-#culture{
-	white-space: pre;	
-	width: 50vmax;
+#twoline{
+  white-space: normal;
+}
+#twoline1{
+  white-space: normal;
 }
 hr.style-eight {
 	width:80%;
@@ -59,9 +109,26 @@ hr.style-eight:after {
     font-size: 1.5em;
     padding: 0 0.25em;
     background: white;
+    opacity: 0.75;
 }
-#contact-container{
-	width: 40%;
+#word-contact{
+  font-family: Helvetica-Bold;
+  font-size: 2.2vmax;
+  color: #ffffff;
+}
+#CONTACT{
+  border-top: 0px;
+}
+#CONTACT-container{
+	width: auto;
+  padding-top: 5%;
+  padding-bottom: 8%;
+  background-color: rgba(216, 216, 216, 0.7);
+  border: solid 1px #979797;
+}
+div.modal-body{
+  margin-left: 10%;
+  margin-right: 10%;
 }
 #COMPANY{
 	border-top: none;
@@ -82,14 +149,19 @@ hr.style-eight:after {
     transform: translate(-50%, -50%);
 }
 .real{
-  font-family: HiraMaruPro-W4;
+  font-family: Hiragino Kaku Gothic Pro;
   font-size: 4.7vmax;
   color: #000000;
 }
+img#mainimage.img-responsive{
+  margin-right: 0%;
+  padding-right: 0%;
+}
 #mainimage { 
     height: auto;
-    opacity: 0.75;
-	width:auto;
+	  width:auto;
+    margin-right: 0%;
+    padding-right: 0%;
 }
 #slogan{
   width: 70%;
@@ -99,31 +171,24 @@ hr.style-eight:after {
   text-align: left;
   color: #f22c20;
 }
-.underlineforheading{
-	width:25%;
-	border-width: 5px;
-	border-color: grey;
-}
-.underlineforheading-COMPANY{
-	width:12.5%;
-	border-width: 5px;
-	border-color: grey;
-}
-.underlineforheading-SERVICES{
-	width:12.5%;
-	border-width: 5px;
-	border-color: grey;
-}
-.underlineforheading-NEWS{
-	width:6%;
-	border-width: 5px;
-	border-color: grey;
-}
+
 .contact-text{
-  font-family: HiraMaruPro-W4;
+  font-family: Hiragino Kaku Gothic Pro;
   font-size: 1.7vmax;
   text-align: left;
   color: #333333;
+}
+#apply-button{
+  width:50%;
+  border-radius: 100px;
+  background-color: #9b9b9b;
+  border: solid 1px #979797;
+}
+#contact-button{
+  width:25%;
+  border-radius: 100px;
+  background-color: #9b9b9b;
+  border: solid 1px #979797;
 }
 .button-grey{
 	width: 100%;
@@ -133,13 +198,28 @@ hr.style-eight:after {
     padding: 15px 32px;
     text-align: center;
     display: inline-block;
-    font-family: HiraginoSans-W3;
+    font-family: Hiragino Kaku Gothic Pro;
     font-size: 2.4vmax;
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 100px;
 }
-.grey-form{
+#user-message{
+  border-radius: 8px;
+  background-color: #faf7f4;
+  border: solid 1px #979797;
+}
+#user-phone-number{
+  border-radius: 8px;
+  background-color: #faf7f4;
+  border: solid 1px #979797;
+}
+#user-email{
+  border-radius: 8px;
+  background-color: #faf7f4;
+  border: solid 1px #979797;
+}
+#user-name{
   border-radius: 8px;
   background-color: #faf7f4;
   border: solid 1px #979797;
@@ -147,4 +227,128 @@ hr.style-eight:after {
 .page-header{
 	border-bottom: none;
 }
+.row1{
+  border-width: 2px;
+  padding-top:2%; 
+  padding-bottom:2%;
+}
+#grey-row{
+  background-color: #eeeeee
+}
+#news-container{
+  width:60%;
+  padding-top: 8%;
 
+}
+.imgcenter{
+   margin: 0 auto;
+}
+.col-md-8{
+  white-space: normal;
+}
+.col-md-3{
+  white-space: normal;
+}
+.access-1{
+  white-space: normal;
+  font-family: Hiragino Kaku Gothic Pro;
+  font-weight: bold;
+  color: #bbbbbb;
+  font-size: 1.9vmax;
+  padding-bottom:2%;
+  padding-bottom: 2%;
+}
+.access-2 {
+  white-space: normal;
+  font-family: Hiragino Kaku Gothic Pro;
+  font-weight: bold;
+  font-size: 1.9vmax;
+  color: #ffffff;
+  padding-bottom:2%;
+  padding-bottom: 2%;
+}
+#ACCESS-heading{
+  color: #ffffff;
+}
+#COMPANY-container{
+    padding-top: 8%;
+    position: relative;
+    background: #F4F6F7 ;
+    overflow: hidden;
+    padding-bottom: 6%;
+
+}
+#COMPANY-container:before{
+  padding-top: 6%;
+  padding-bottom: 6.8%;
+  background-image: url("/images/scoville_office.jpg");
+  background-color: rgba(216, 216, 216, 0.4);
+  -ms-background-size: cover;
+  -o-background-size: cover;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  background-size: cover;
+  content: ' ';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0.4;
+  background-position: 50% 0;
+}
+#RECRUITMENT-container{
+    height: 848px;
+    padding-top: 8%;
+    background-image: url("/images/recruit_image.png");
+    padding-bottom: 6%;
+
+}
+@media screen and (max-width: 600px) {
+    #RECRUITMENT-container{
+    height: 700px;
+    padding-top: 8%;
+    background-image: url("/images/recruit_image.png");
+    padding-bottom: 6%;
+
+}
+}
+#RECRUITMENT{
+  border-top: none;
+}
+#SERVICES-container{
+  padding-top: 7%;
+  padding-bottom: 7.5%; 
+}
+.bottom-padding{
+  padding-bottom: 7%;
+}
+#ACCESS{
+  border-top: 0px;
+}
+#ACCESS-container{
+  background-color: #483030;
+  padding-top: 7%;
+  padding-bottom: 8%; 
+}
+.left-padding{
+  padding-left: 10%;
+}
+.padding-popup{
+  padding-left: 3%;
+  padding-right: 3%;
+}
+.padding-top{
+  padding-top:2vmax;
+}
+.no-padding{
+  margin-right: 0px; 
+  padding-right: 0px;
+  margin-left: 0px;
+  padding-left: 0px;   
+}
+div.navbar-header{
+  height: 80%;
+}

@@ -27,7 +27,6 @@ app.get('/cms/checktoken', (req, res) => {
 })
 
 app.get('/cms/news/brief', (req, res) => {
-  console.log('okey')
   getArticlesBrief((articles) => {
     if(articles) res.send(articles)
     else return res.status(404).send("Not good")
@@ -35,9 +34,7 @@ app.get('/cms/news/brief', (req, res) => {
 })
 
 app.delete('/cms/news/:id', (req, res) => {
-  console.log('in delete', req.params.id)
   deleteArticleById(req.params.id, (message)=> {
-    console.log('message hey', message)
     if(message) res.send(message)
     else return res.status(404).send("delete article failed")
   })
