@@ -15,15 +15,15 @@ type User struct {
 
 type News struct {
 	// gorm.Model
-	ID          uint   `gorm:"primary_key"`
+	ID          uint   `gorm:"primary_key" json:"id"`
 	Title       string `gorm:"size:255" json:"title" validate:"required"`
 	Content     string `json:"content"`
-	Picture     string
+	Picture     string `json:"picture"`
 	Description string `grom:"size:255" json:"description"`
 }
 
 type Form_recruitment struct {
-	ID           uint      `gorm:"primary_key"`
+	ID           uint      `gorm:"primary_key" json:"id`
 	FirstName    string    `gorm:"size:255" json:"first_name"`
 	LastName     string    `gorm:"size:255" json:"last_name"`
 	Email        string    `gorm:"type:varchar(100)" json:"email"`
