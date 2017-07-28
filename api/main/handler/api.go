@@ -6,14 +6,16 @@ import (
 	"github.com/tungnt244/scoville_website/api/main/helper"
 	"github.com/tungnt244/scoville_website/api/main/model"
 	"golang.org/x/crypto/bcrypt"
-
 	// "fmt"
+	// "gopkg.in/go-playground/validator.v9"
+	"github.com/bluele/slack"
 	"net/http"
 )
 
-func Hello(c echo.Context) error {
-	return c.String(http.StatusOK, "This is my test golang")
-}
+const (
+	token       = "xoxp-134104585698-215180420103-220014213207-962f0f16d5e49cb173fc8b25a338e363"
+	channelName = "internship2018_a"
+)
 
 /*
 	Function to controllr User api
@@ -37,7 +39,10 @@ func CreateUser(c echo.Context) error {
 	if err := c.Bind(u); err != nil {
 		return c.JSON(http.StatusBadRequest, err)
 	}
+	if err := c.Validate(u); err != nil {
+		return c.JSON(http.StatusBadRequest, "Missing data")
 
+	}
 	//Encrypted password before saving in database
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(u.Password), bcrypt.DefaultCost)
 	if err != nil {
@@ -48,6 +53,11 @@ func CreateUser(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, "Not a valid Email")
 	}
 
+	// existedEmail = db.Manager.CheckExistedEmail(u.Email)
+
+	// if existedEmail.Email == u.Email {
+	// 	return c.JSON(http.StatusOK, "Email already existed")
+	// }
 	err = db.Manager.SaveUser(u.Email, string(hashedPassword))
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, err.Error())
@@ -62,13 +72,14 @@ func UpdateUser(c echo.Context) error {
 	if err := c.Bind(u); err != nil {
 		return c.JSON(http.StatusBadRequest, err)
 	}
-	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(u.Password), bcrypt.DefaultCost)
-	if err != nil {
-		panic(err)
-	}
-	u.Password = string(hashedPassword)
 
-	_, err = db.Manager.UpdateUserInfo(userId, u)
+	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(u.Password), bcrypt.DefaultCost)
+
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, "Password cannot be encrypted")
+	}
+
+	_, err = db.Manager.UpdateUserInfo(userId, string(hashedPassword))
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, err.Error())
 	}
@@ -82,10 +93,23 @@ func Login(c echo.Context) error {
 	if err := c.Bind(u); err != nil {
 		return c.JSON(http.StatusBadRequest, err)
 	}
-	// return c.JSON(http.StatusOK, u)
-	user, err := db.Manager.GetUserByEmailAndPass(u.Email, u.Password)
+	if err := c.Validate(u); err != nil {
+		return c.JSON(http.StatusBadRequest, "Missing data")
+
+	}
+	userCheckPassword, err := db.Manager.GetUserByEmail(u.Email)
 	if err != nil {
-		return c.String(http.StatusNotFound, "Email or Password is not correct")
+		return c.String(http.StatusBadRequest, "The user didn't exist")
+	}
+
+	err = bcrypt.CompareHashAndPassword([]byte(userCheckPassword.Password), []byte(u.Password))
+	if err != nil {
+		return c.String(http.StatusBadRequest, "The Password is not correct")
+	}
+
+	user, err := db.Manager.GetUserByEmailAndPass(u.Email, userCheckPassword.Password)
+	if err != nil {
+		return c.String(http.StatusBadRequest, "Email or Password is not correct")
 	}
 	return c.JSON(http.StatusOK, user.Email)
 }
@@ -93,6 +117,7 @@ func Login(c echo.Context) error {
 /*
 	Function to controllr News api
 	_Get a news with the given id
+	_Get all news in database
 	_Create a news
 	_Update information of news
 	_Delete news with the given id
@@ -116,6 +141,22 @@ func GetNews(c echo.Context) error {
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, "Not existed")
 
+	}
+	return c.JSON(http.StatusOK, news)
+
+}
+
+func GetAllNews(c echo.Context) error {
+	checkUrl := c.Path()
+	var news []model.News
+	var err error
+	if checkUrl == "/news" {
+		news, err = db.Manager.GetAll()
+	} else {
+		news, err = db.Manager.GetAllBriefInfo()
+	}
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, "Not existed")
 	}
 	return c.JSON(http.StatusOK, news)
 
@@ -161,11 +202,18 @@ func DeleteNews(c echo.Context) error {
 */
 
 func CreateFormRecruitment(c echo.Context) error {
+	api := slack.New(token)
+
+	err := api.ChatPostMessage(channelName, "You received a new application from!", nil)
+	if err != nil {
+		panic(err)
+	}
+
 	f := new(model.Form_recruitment)
 	if err := c.Bind(f); err != nil {
 		return c.JSON(http.StatusBadRequest, err)
 	}
-	err := db.Manager.SaveFormRecruitment(f)
+	err = db.Manager.SaveFormRecruitment(f)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, err.Error())
 	}

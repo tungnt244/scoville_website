@@ -29,9 +29,13 @@ func (m *DBManager) GetUserByEmailAndPass(e string, p string) (user model.User, 
 	return
 }
 
-// func (m *DBManager) CheckExistedEmail(e string) (user model.User, err error) {
-// 	err = m.database.Where(&model.User{Email: e, Password: p}).Find(&user).Error
-// 	return
+func (m *DBManager) GetUserByEmail(e string) (user model.User, err error) {
+	err = m.database.Where(&model.User{Email: e}).Find(&user).Error
+	return
+}
+
+// func (m *DBManager) CheckExistedEmail(e string) *gorm.DB {
+// 	return m.database.Where(&model.User{Email: e})
 // }
 
 func (m *DBManager) SaveUser(e string, p string) (err error) {
@@ -40,8 +44,8 @@ func (m *DBManager) SaveUser(e string, p string) (err error) {
 
 }
 
-func (m *DBManager) UpdateUserInfo(id string, u *model.User) (user model.User, err error) {
-	err = m.database.Find(&user, id).Update(&model.User{Email: u.Email, Password: string(u.Password)}).Error
+func (m *DBManager) UpdateUserInfo(id string, p string) (user model.User, err error) {
+	err = m.database.Find(&user, id).Update(&model.User{Password: p}).Error
 	return
 }
 
