@@ -202,9 +202,10 @@ func DeleteNews(c echo.Context) error {
 */
 
 func CreateFormRecruitment(c echo.Context) error {
+
 	api := slack.New(token)
 
-	err := api.ChatPostMessage(channelName, "You received a new application from!", nil)
+	err := api.ChatPostMessage(channelName, "You received a new application form!", nil)
 	if err != nil {
 		panic(err)
 	}
