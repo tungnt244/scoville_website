@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import '../Styles/react-table-bootstrap.css'
 import axios from 'axios'
+import {url} from '../config'
+import {browserHistory} from 'react-router'
 
 export default class CMSManager extends Component {
 
@@ -33,7 +35,14 @@ export default class CMSManager extends Component {
     }
 
     componentDidMount(){
-        
+        axios.get(url +'/news/brief').then(response => {
+            console.log('response data', responsed)
+            this.setState({
+                articles: response.data
+            })
+        }).catch(error => {
+            console.log('error: ', error)
+        })
     }
 
     render(){

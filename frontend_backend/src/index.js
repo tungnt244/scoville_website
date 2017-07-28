@@ -8,7 +8,7 @@ import NotFoundPage from './components/NotFoundPage';
 import login from './Api/login';
 import checkToken from './Api/CheckToken';
 import bodyParser from 'body-parser';
-
+import getArticlesBrief from './Api/getArticlesBrief';
 const app = express();
 
 app.set('view engine', 'ejs');
@@ -21,6 +21,13 @@ app.get('/cms/checktoken', (req, res) => {
   checkToken(req.get("Authorization"), (isValid) => {
     if(isValid) res.send({isValid: isValid})
     else return res.send("Token is not valid")  
+  })
+})
+
+app.get('/cms/news', (req, res) => {
+  getArticlesBrief((articles) => {
+    if(articles) res.send(articles)
+    else return res.status(404).send("Not good")
   })
 })
 
