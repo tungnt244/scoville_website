@@ -21,22 +21,36 @@ export default class CMSManager extends Component {
     editButton = () => {
         return (
         <button
-            onClick={ () => console.log('edit') }
+            onClick={ () => {
+                
+            } }
         >Edit</button>
         );
     }
 
-    deleteButton = () => {
+    deleteButton(cell, row) {
         return(
             <button
-                onClick={()=>console.log('delete')}
+                onClick={()=>{
+                    axios.delete(url +'/cms/news/'+row.ID).then(response => {
+                        {/* console.log('response', response) */}
+                        axios.get(url +'/cms/news/brief').then(response => {
+                            this.setState({
+                                articles: response.data
+                            })
+                        }).catch(error => {
+                            console.log('error: ', error)
+                        })  
+                    }).catch(error => {
+                        console.log('error: ', error)
+                    })
+                }}
             >Delete</button>
         )
     }
 
     componentDidMount(){
-        axios.get(url +'/news/brief').then(response => {
-            console.log('response data', responsed)
+        axios.get(url +'/cms/news/brief').then(response => {
             this.setState({
                 articles: response.data
             })
@@ -46,24 +60,19 @@ export default class CMSManager extends Component {
     }
 
     render(){
-        var articles = [{
-            id: 1,
-            title: "Title 1",
-            description: "This is the description"
-        },{
-            id: 2,
-            title: "Title 2",
-            description: "This is the description 2"
-        }];
+        // console.log('state', this.state.articles)
+        let articles = this.state.articles
         return(
             <div>
-                <button onClick={()=>console.log('create button')}>Create</button>
-                <BootstrapTable data={products} >
-                    <TableHeaderColumn dataField="id" isKey={true} >Article ID</TableHeaderColumn>
+                <button onClick={()=>{
+                    browserHistory.push('/admin/cms/editor')
+                    }}>Create</button>
+                <BootstrapTable data={articles} >
+                    <TableHeaderColumn dataField="ID" isKey={true} >Article ID</TableHeaderColumn> 
                     <TableHeaderColumn dataField="title" >Title</TableHeaderColumn>
                     <TableHeaderColumn dataField="description">Description</TableHeaderColumn>
                     <TableHeaderColumn dataFormat={this.editButton}>Edit</TableHeaderColumn>
-                    <TableHeaderColumn dataFormat={this.deleteButton}>Delete</TableHeaderColumn>
+                    <TableHeaderColumn dataFormat={(cell,row) => this.deleteButton(cell, row)}>Delete</TableHeaderColumn>
                 </BootstrapTable>
             </div>
         )

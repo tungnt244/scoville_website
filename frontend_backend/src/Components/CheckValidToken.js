@@ -3,7 +3,7 @@ import {url} from '../config'
 
 export default function(callback){
     let token = localStorage.getItem('token')
-    console.log('token', token)
+    // console.log('token', token)
     if(token){
         var instance = axios.create({
             baseURL: url + '/cms/checktoken',
@@ -16,7 +16,7 @@ export default function(callback){
         
         instance.get()
         .then(response => {
-            console.log('response', response)
+            // console.log('response', response)
             if(response.data.isValid){
                 callback()
                 return

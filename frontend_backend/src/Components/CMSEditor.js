@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 import TinyMCE from 'react-tinymce';
 import {api_url} from '../config';
 import axios from 'axios';
+import {browserHistory} from 'react-router'
 
 export default class CMSEditor extends Component {
   constructor(props){
     super(props)
     this.state = {
       title: 'Title',
-      content: 'Edit your article here'
+      content: 'Edit your article here',
+      avatar: 'http://animals.sandiegozoo.org/sites/default/files/2016-12/Wolf_ZN.jpg',
+      description: 'Short description'
     }
   }
 
@@ -24,8 +27,7 @@ export default class CMSEditor extends Component {
       Title: this.state.title,
       Content: this.state.content
     }).then(response => {
-      console.log('Saved success')
-      console.log('clicked')
+      browserHistory.push('/admin/cms')
     }).catch(error => {
       console.log('error: ', error)
     })
@@ -37,10 +39,24 @@ export default class CMSEditor extends Component {
     })
   }
 
+  changeDescription = (e) => {
+    this.setState({
+      description: e.target.value
+    })
+  }
+
+  changeAvatar = (e) => {
+    this.setState({
+      avatar: e.target.value
+    })
+  }
+
   render() {
     return (
       <div className="TinyMCE">
         <input type="text" value={this.state.title} onChange={this.changeTitle}/>
+        <input type="text" value={this.state.description} onChange={this.changeDescription}/>
+        <input type="text" value={this.state.avatar} onChange={this.changeAvatar}/>
         <TinyMCE
           content={this.state.content}
           config={{
