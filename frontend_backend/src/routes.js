@@ -15,7 +15,7 @@ const routes = (
         <Route path='admin/login' component={AdminLogin}/>
         <Route path='admin/cms' component={CMSLayout}>
             <IndexRoute component={CMSManager}/>
-            <Route path='/editor' component={CMSEditor}/>
+            <Route path='editor' component={CMSEditor}/>
         </Route>
         <Route path="news" component={CMSArticles}/>
         <Route path="*" component={NotFoundPage}/>
