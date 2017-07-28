@@ -28,6 +28,7 @@ export default class CMSSingleArticle extends Component {
     }
 
     render(){
+        console.log('arrr', this.state)
         return(
             <div>
                 <h1>{this.state.title}</h1>

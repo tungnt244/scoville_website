@@ -17,7 +17,7 @@ const routes = (
             <IndexRoute component={CMSManager}/>
             <Route path='editor' component={CMSEditor}/>
         </Route>
-        <Route path="news" component={CMSArticles}/>
+        <Route path="news/:id" component={CMSArticles}/>
         <Route path="*" component={NotFoundPage}/>
     </Route>
 );

@@ -8,17 +8,19 @@ export default class CMSArticles extends Component {
     constructor(props){
         super(props)
         this.state = {
-            articles: []
+            article: ''
         }
     }
 
     componentDidMount(){
-        axios.get(api_url + '/news/1').then(response => {
-            let articles = []
-            articles.push(response.data)
-            console.log('response', response)
+        console.log('id ', this.props.params)
+        let id = this.props.params.id || 2
+        let url = api_url + '/news/' + id
+        console.log('url', url)
+        axios.get(url).then(response => {
+            console.log('hello', response)
             this.setState({
-                articles: articles
+                article: response.data
             })
         }).catch(error => {
             console.log('error', error)
@@ -26,11 +28,12 @@ export default class CMSArticles extends Component {
     }
 
     render(){
-        if(this.state.articles.length>0){
+        console.log('eerafasdfa', this.state.article)
+        if(this.state.article != ''){
             return(
-                <div><CMSSingleArticle article={this.state.articles[0]}/></div>
+                <CMSSingleArticle article={this.state.article}/>
             )
-        }else return(<div>hello there</div>)
+        }else return(<div>hello there, this is where i put article</div>)
         
     }
 }
