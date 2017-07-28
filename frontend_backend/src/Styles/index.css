@@ -1,5 +1,5 @@
 body{
-	padding-top: 7.1vmax;
+	padding-top: 6.5vmax;
 }
 @media screen and (max-width: 378px) {
     body {
@@ -159,7 +159,7 @@ img#mainimage.img-responsive{
 }
 #mainimage { 
     height: auto;
-	  width:auto;
+	  width:100%;
     margin-right: 0%;
     padding-right: 0%;
 }
@@ -300,9 +300,10 @@ img#mainimage.img-responsive{
   background-position: 50% 0;
 }
 #RECRUITMENT-container{
-    height: 848px;
+    height: 100vmax; 
     padding-top: 8%;
-    background-image: url("/images/recruit_image.png");
+    background: url("/images/recruit_image.png") no-repeat;
+    background-size: cover;
     padding-bottom: 6%;
 
 }
