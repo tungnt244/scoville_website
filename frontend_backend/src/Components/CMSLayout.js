@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 import {url} from '../config'
-import checkValidToken from './CheckVAlidToken'
+import checkValidToken from './CheckValidToken'
 
 
-export default class CMSPath extends Component {
+export default class CMSLayout extends Component {
 
     constructor(props){
         super(props)

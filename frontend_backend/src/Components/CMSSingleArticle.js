@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 
-export default class SingleArticle extends Component {
+export default class CMSSingleArticle extends Component {
     constructor(props){
         super(props)
         let article = this.props.article

@@ -3,7 +3,7 @@ import TinyMCE from 'react-tinymce';
 import {api_url} from '../config';
 import axios from 'axios';
 
-export default class Editor extends Component {
+export default class CMSEditor extends Component {
   constructor(props){
     super(props)
     this.state = {

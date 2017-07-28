@@ -18,32 +18,27 @@ app.use(express.static(path.join(__dirname,'assets')));
 app.use(bodyParser.json())
 
 app.get('/cms/checktoken', (req, res) => {
-  checkToken(req.get("Authorization"), (message) => {
-    if(message) res.send(message)
-    else return res.send("token is not valid")  
+  checkToken(req.get("Authorization"), (isValid) => {
+    if(isValid) res.send({isValid: isValid})
+    else return res.send("Token is not valid")  
   })
 })
 
 app.post('/admin/login', (req, res) => {
-  console.log('hello 0')
-  login(req.body, (token) => {
-    console.log('hello 1')
-    console.log('token: ', token)
-    if(token){
+  login(req.body, (response) => {
+    if(response.token){
       return res.send({
-        user: "admin",
-        token: token
+        email: response.email,
+        token: response.token
       })
-    }else return res.send("it's not okey")
+    }else {
+      console.log('error : ', response.error)
+      return res.status(401).send(response.error)
+    }
   })
 })
 
-app.get('/hello', (req, res) => {
-  console.log('hello there')
-})
-
 app.get('*', (req, res) => {
-  console.log('hello')
   match(
     { routes, location: req.url },
     (err, redirectLocation, renderProps) => {

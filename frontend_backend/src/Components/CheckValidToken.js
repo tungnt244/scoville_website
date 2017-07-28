@@ -3,10 +3,11 @@ import {url} from '../config'
 
 export default function(callback){
     let token = localStorage.getItem('token')
+    console.log('token', token)
     if(token){
         var instance = axios.create({
             baseURL: url + '/cms/checktoken',
-            timeout: 1000,
+            timeout: 10000,
             headers: {
                 'Content-Type': 'application/json', 
                 'Authorization': token
@@ -16,7 +17,7 @@ export default function(callback){
         instance.get()
         .then(response => {
             console.log('response', response)
-            if(response.data === 'valid_token'){
+            if(response.data.isValid){
                 callback()
                 return
             }

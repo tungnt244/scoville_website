@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
-import SingleArticle from './SingleArticle'
+import CMSSingleArticle from './CMSSingleArticle'
 import {api_url} from '../config'
 import axios from 'axios'
 
-export default class Articles extends Component {
+export default class CMSArticles extends Component {
 
     constructor(props){
         super(props)
@@ -28,7 +28,7 @@ export default class Articles extends Component {
     render(){
         if(this.state.articles.length>0){
             return(
-                <div><SingleArticle article={this.state.articles[0]}/></div>
+                <div><CMSSingleArticle article={this.state.articles[0]}/></div>
             )
         }else return(<div>hello there</div>)
         

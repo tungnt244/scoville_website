@@ -1,16 +1,15 @@
 import jwt from 'jsonwebtoken'
-import {api_url} from '../config'
+import {api_url, secret_token_string} from '../config'
 import axios from 'axios'
 
 export default function checkToken(token, callback){
-    //if valid => true
-    let user = jwt.verify(token, "secret string")
-
+    let user = jwt.verify(token, secret_token_string)
+    
     let isValidUser = axios.post(api_url + '/login', {
         email: user.email,
         password: user.password
     }).then(response => {
-        callback("valid_token")
+        callback(true)
         return
     }).catch(error => {
         console.log('error: ', error)
