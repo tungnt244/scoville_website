@@ -90,7 +90,12 @@ export default class CMSEditor extends Component {
   }
 
   render() {
-    console.log('state', JSON.stringify(this.state, null, 4))
+    // console.log('state', JSON.stringify(this.state, null, 4))
+    // let artical_content
+    // if(this.state.content){
+    //   artical_content = this.state.content
+    // }else artical_content = ''
+    // console.log('articles', artical_content)
     return (
       <div className="TinyMCE">
         <Form horizontal>
@@ -127,7 +132,7 @@ export default class CMSEditor extends Component {
             </Col>
           </FormGroup>
         </Form>
-        {this.state.content && 
+        {this.state.content &&   
         <TinyMCE
           content={this.state.content}
           config={{
@@ -140,7 +145,20 @@ export default class CMSEditor extends Component {
           }}
           onChange={this.handleEditorChange}
         />
-        }
+        }{!this.state.content && 
+          <TinyMCE
+          content=""
+          config={{
+            plugins: 'link image code textcolor colorpicker',
+            toolbar: 'undo redo | bold italic | forecolor backcolor | alignleft aligncenter alignright | code | link image',
+            width: '100%',
+            height: 400,
+            autoresize_min_height: 400,
+            autoresize_max_height: 800,
+          }}
+          onChange={this.handleEditorChange}
+        />
+        } 
       </div>
     );
   }

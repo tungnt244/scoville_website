@@ -1,20 +1,36 @@
 import React, {Component} from 'react'
+import axios from 'axios';
+import {api_url} from '../config'
+import {Jumbotron} from 'react-bootstrap'
 
 export default class CMSSingleArticle extends Component {
     constructor(props){
         super(props)
-        let article = this.props.article
         this.state = {
-            title: article.title,
-            content: article.content
+            title: 'Title',
+            content: 'Content'
         }
     }
 
-    componentWillReceiveProps(nextProps){
-        if(this.state.title != nextProps.title && this.state.content != nextProps.content){
+    componentDidMount(){
+        if(this.props.params.id){
+            console.log('id', this.props.params.id)
+            axios.get(api_url +'/news/'+this.props.params.id).then(response => {
+                console.log('response data', response.data)
+                let {content, description, id, picture, title} = response.data
+                this.setState({
+                id: id,
+                title: title,
+                content: content,
+                avatar: picture,
+                description: description
+                })
+            }).catch(error => {
+                console.log('error: ', error)
+            })
+        }else{
             this.setState({
-                titile: nextProps.title,
-                content: nextProps.content
+                content: 'Can not load the article'
             })
         }
     }
@@ -28,12 +44,11 @@ export default class CMSSingleArticle extends Component {
     }
 
     render(){
-        console.log('arrr', this.state)
         return(
-            <div>
+            <Jumbotron>
                 <h1>{this.state.title}</h1>
                 {this.MyComponent()}
-            </div>
+            </Jumbotron>
         )
     }
 }

@@ -8,6 +8,7 @@ import CMSLayout from './components/CMSLayout';
 import CMSManager from './components/CMSManager';
 import CMSEditor from './components/CMSEditor';
 import CMSArticles from './components/CMSArticles';
+import CMSSingleArticle from './components/CMSSingleArticle';
 
 const routes = (
     <Route path="/" component={Layout}>
@@ -18,7 +19,8 @@ const routes = (
             <Route path='editor' component={CMSEditor}/>
         </Route>
         <Route path='admin/cms/editor/:id' component={CMSEditor}/>
-        <Route path="news/:id" component={CMSArticles}/>
+        <Route path='news' component={CMSArticles}/>
+        <Route path="news/:id" component={CMSSingleArticle}/>
         <Route path="*" component={NotFoundPage}/>
     </Route>
 );
