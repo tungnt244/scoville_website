@@ -3,34 +3,72 @@ import TinyMCE from 'react-tinymce';
 import {api_url} from '../config';
 import axios from 'axios';
 import {browserHistory} from 'react-router'
+import {Button, Form, FormGroup, FormControl, Col, ControlLabel} from 'react-bootstrap'
 
 export default class CMSEditor extends Component {
   constructor(props){
     super(props)
     this.state = {
       title: 'Title',
-      content: 'Edit your article here',
+      content: '',
       avatar: 'http://animals.sandiegozoo.org/sites/default/files/2016-12/Wolf_ZN.jpg',
-      description: 'Short description'
+      description: 'Short description',
+      isEdit: false
+    }
+  }
+
+  componentDidMount(){
+    if(this.props.params.id){
+      console.log('id', this.props.params.id)
+      axios.get(api_url +'/news/'+this.props.params.id).then(response => {
+        console.log('response data', response.data)
+        let {content, description, id, picture, title} = response.data
+        this.setState({
+          id: id,
+          title: title,
+          content: content,
+          avatar: picture,
+          description: description,
+          isEdit: true
+        })
+      }).catch(error => {
+        console.log('error: ', error)
+      })
     }
   }
 
   handleEditorChange = (e) => {
+    console.log('Content was updated:', e.target.getContent())
     this.setState({
       content: e.target.getContent()
     })
-    console.log('Content was updated:', this.state.content)
   }
 
   saveArtical = (e) => {
-    axios.post(api_url + '/news', {
-      Title: this.state.title,
-      Content: this.state.content
-    }).then(response => {
-      browserHistory.push('/admin/cms')
-    }).catch(error => {
-      console.log('error: ', error)
-    })
+    if(this.state.isEdit){
+      axios.put(api_url +'/news/' + this.state.id, {
+        Title: this.state.title,
+        Content: this.state.content,
+        Picture: this.state.avatar,
+        Description: this.state.description
+      }).then(response => {
+        browserHistory.push('/admin/cms')
+      }).catch(error => {
+        console.log('error: ', error)
+      })
+    }
+    else{
+      axios.post(api_url + '/news', {
+        Title: this.state.title,
+        Content: this.state.content,
+        Picture: this.state.avatar,
+        Description: this.state.description
+      }).then(response => {
+        browserHistory.push('/admin/cms')
+      }).catch(error => {
+        console.log('error: ', error)
+      })
+    }
   }
 
   changeTitle = (e) => {
@@ -52,11 +90,44 @@ export default class CMSEditor extends Component {
   }
 
   render() {
+    console.log('state', JSON.stringify(this.state, null, 4))
     return (
       <div className="TinyMCE">
-        <input type="text" value={this.state.title} onChange={this.changeTitle}/>
-        <input type="text" value={this.state.description} onChange={this.changeDescription}/>
-        <input type="text" value={this.state.avatar} onChange={this.changeAvatar}/>
+        <Form horizontal>
+          <FormGroup>
+            <Col componentClass={ControlLabel} sm={2}>
+              {'Title: '}
+            </Col>
+            <Col sm={6}>
+              <FormControl type="text" placeholder="Email" value={this.state.title} onChange={this.changeTitle}/>
+            </Col>
+          </FormGroup>
+          <FormGroup>
+            <Col componentClass={ControlLabel} sm={2}>
+              {'Description: '}
+            </Col>
+            <Col sm={6}>
+              <FormControl type="text" placeholder="Description" value={this.state.description} onChange={this.changeDescription}/>
+            </Col>
+          </FormGroup>
+          <FormGroup>
+            <Col componentClass={ControlLabel} sm={2}>
+              {'Picture: '}
+            </Col>
+            <Col sm={6}>
+              <FormControl type="text" placeholder="Picture" value={this.state.avatar} onChange={this.changeAvatar}/>
+            </Col>
+          </FormGroup>
+          <FormGroup>
+            <Col componentClass={ControlLabel} sm={2}>
+              <Button bsStyle="success" onClick={this.saveArtical}>Save</Button>
+            </Col>
+            <Col componentClass={ControlLabel} sm={2}>
+              <Button bsStyle="danger" onClick={()=>{browserHistory.push('/admin/cms')}}>Discard</Button>
+            </Col>
+          </FormGroup>
+        </Form>
+        {this.state.content && 
         <TinyMCE
           content={this.state.content}
           config={{
@@ -69,7 +140,7 @@ export default class CMSEditor extends Component {
           }}
           onChange={this.handleEditorChange}
         />
-        <button onClick={this.saveArtical}>Save</button>
+        }
       </div>
     );
   }

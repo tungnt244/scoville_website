@@ -4,6 +4,7 @@ import '../Styles/react-table-bootstrap.css'
 import axios from 'axios'
 import {url} from '../config'
 import {browserHistory} from 'react-router'
+import {Grid, Row, Button, Form, FormGroup, FormControl, Col, ControlLabel} from 'react-bootstrap'
 
 export default class CMSManager extends Component {
 
@@ -18,21 +19,21 @@ export default class CMSManager extends Component {
         return '<i class="glyphicon glyphicon-usd"></i> ' + cell;
     }
 
-    editButton = () => {
+    editButton = (cell, row) => {
         return (
-        <button
+        <Button bsStyle="primary"
             onClick={ () => {
-                
+                browserHistory.push('/admin/cms/editor/' + row.id)
             } }
-        >Edit</button>
+        >Edit</Button>
         );
     }
 
     deleteButton(cell, row) {
         return(
-            <button
+            <Button bsStyle="danger"
                 onClick={()=>{
-                    axios.delete(url +'/cms/news/'+row.ID).then(response => {
+                    axios.delete(url +'/cms/news/'+row.id).then(response => {
                         {/* console.log('response', response) */}
                         axios.get(url +'/cms/news/brief').then(response => {
                             this.setState({
@@ -45,12 +46,13 @@ export default class CMSManager extends Component {
                         console.log('error: ', error)
                     })
                 }}
-            >Delete</button>
+            >Delete</Button>
         )
     }
 
     componentDidMount(){
         axios.get(url +'/cms/news/brief').then(response => {
+            console.log('data', response.data)
             this.setState({
                 articles: response.data
             })
@@ -60,15 +62,22 @@ export default class CMSManager extends Component {
     }
 
     render(){
-        // console.log('state', this.state.articles)
         let articles = this.state.articles
         return(
             <div>
-                <button onClick={()=>{
-                    browserHistory.push('/admin/cms/editor')
-                    }}>Create</button>
+                <Grid>
+                    <Row className="show-grid">
+                        <h1>Manage Articles</h1>
+                    </Row>
+                    <Row className="show-grid">
+                        <Button bsStyle="success" onClick={()=>{
+                        browserHistory.push('/admin/cms/editor')
+                        }}>Create</Button>
+                    </Row>
+                </Grid>
+                
                 <BootstrapTable data={articles} >
-                    <TableHeaderColumn dataField="ID" isKey={true} >Article ID</TableHeaderColumn> 
+                    <TableHeaderColumn dataField="id" isKey={true} >Article ID</TableHeaderColumn> 
                     <TableHeaderColumn dataField="title" >Title</TableHeaderColumn>
                     <TableHeaderColumn dataField="description">Description</TableHeaderColumn>
                     <TableHeaderColumn dataFormat={this.editButton}>Edit</TableHeaderColumn>
