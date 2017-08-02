@@ -1,5 +1,5 @@
 body{
-	padding-top: 7.1vmax;
+  padding-top: 7.1vmax;
 }
 @media screen and (max-width: 378px) {
     body {
@@ -20,14 +20,14 @@ a.big-word.text-right{
   font-weight: bold;
   text-align: center;
   color: #070707;
-  font-size: 1.7vmax;
+  font-size: 1.5vmax;
   background-color: #e0dadb;
 }
 .grey-background{
-	background-color: #f6f6f6;
+  background-color: #f6f6f6;
 }
 #my-navbar{
-	font-family: Helvetica-Bold;
+  font-family: Helvetica-Bold;
   background-color: #e0dadb;
 }
 div#nav-container.container{
@@ -55,7 +55,7 @@ a#logo.navbar-left{
   color: #606366;
 }
 .big-line-space{
-	line-height: 190%;
+  line-height: 190%;
   white-space: normal;
 }
 .red-text{
@@ -67,8 +67,8 @@ a#logo.navbar-left{
   margin-top: 7%;
 }
 .japanese-text{
-	font-size: 2.0vmax;
-	font-family: Hiragino Kaku Gothic Pro;
+  font-size: 2.0vmax;
+  font-family: Hiragino Kaku Gothic Pro;
   line-height: 1.75;
   text-align: center;
   color: #000000;
@@ -83,9 +83,9 @@ a#logo.navbar-left{
   font-weight: 900; 
 }
 #small{
-	font-size: 1.6vmax;
-	font-family:Hiragino Kaku Gothic Pro;
-	color: #333333;
+  font-size: 1.6vmax;
+  font-family:Hiragino Kaku Gothic Pro;
+  color: #333333;
 }
 #twoline{
   white-space: normal;
@@ -94,7 +94,7 @@ a#logo.navbar-left{
   white-space: normal;
 }
 hr.style-eight {
-	width:80%;
+  width:80%;
     padding: 0;
     border: none;
     border-top: medium double #333;
@@ -102,7 +102,7 @@ hr.style-eight {
     text-align: center;
 }
 hr.style-eight:after {
-    content: "§";
+    content: "\A7";
     display: inline-block;
     position: relative;
     top: -0.7em;
@@ -120,7 +120,7 @@ hr.style-eight:after {
   border-top: 0px;
 }
 #CONTACT-container{
-	width: auto;
+  width: auto;
   padding-top: 5%;
   padding-bottom: 8%;
   background-color: rgba(216, 216, 216, 0.7);
@@ -131,14 +131,14 @@ div.modal-body{
   margin-right: 10%;
 }
 #COMPANY{
-	border-top: none;
+  border-top: none;
 }
 #SERVICES{
-	border-top: none;
+  border-top: none;
 }
 
 #NEWS{
-	border-top: none;
+  border-top: none;
 }
 
 
@@ -159,7 +159,7 @@ img#mainimage.img-responsive{
 }
 #mainimage { 
     height: auto;
-	  width:auto;
+    width:100%;
     margin-right: 0%;
     padding-right: 0%;
 }
@@ -191,8 +191,8 @@ img#mainimage.img-responsive{
   border: solid 1px #979797;
 }
 .button-grey{
-	width: 100%;
-	background-color: #9b9b9b;
+  width: 100%;
+  background-color: #9b9b9b;
     border: solid 1px #979797;
     color: white;
     padding: 15px 32px;
@@ -225,7 +225,7 @@ img#mainimage.img-responsive{
   border: solid 1px #979797;
 }
 .page-header{
-	border-bottom: none;
+  border-bottom: none;
 }
 .row1{
   border-width: 2px;
@@ -352,3 +352,5 @@ img#mainimage.img-responsive{
 div.navbar-header{
   height: 80%;
 }
+
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhc3NldHMvY3NzL3N0eWxlcy5jc3MiLCJzb3VyY2VSb290IjoiIn0=*/
