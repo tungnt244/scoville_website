@@ -23,13 +23,13 @@ type News struct {
 }
 
 type Form_recruitment struct {
-	ID           uint      `gorm:"primary_key" json:"id`
-	FirstName    string    `gorm:"size:255" json:"first_name"`
-	LastName     string    `gorm:"size:255" json:"last_name"`
-	Email        string    `gorm:"type:varchar(100)" json:"email"`
-	Telephone    string    `gorm:"size:255" json:"telephone"`
-	Position     string    `gorm:"size:255" json:"field"`
-	Advertisment string    `gorm:"size:255" json:"advertisment"`
-	Status       string    `gorm:"string:20" json:"status"`
-	CreatedAt    time.Time `gorm:"column:created_at;type:datetime;default:CURRENT_TIMESTAMP"`
+	ID            uint      `gorm:"primary_key" json:"id`
+	FirstName     string    `gorm:"size:255" json:"first_name"`
+	LastName      string    `gorm:"size:255" json:"last_name"`
+	Email         string    `gorm:"type:varchar(100)" json:"email"`
+	Telephone     string    `gorm:"size:255" json:"telephone"`
+	Position      string    `gorm:"size:255" json:"field"`
+	Advertisement string    `gorm:"size:255" json:"advertisement"`
+	Status        string    `gorm:"string:20" json:"status"`
+	CreatedAt     time.Time `gorm:"column:created_at;type:datetime;default:CURRENT_TIMESTAMP"`
 }

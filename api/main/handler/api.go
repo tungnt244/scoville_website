@@ -28,7 +28,7 @@ func GetUser(c echo.Context) error {
 	userId := c.Param("id")
 	user, err := db.Manager.GetUserById(userId)
 	if err != nil {
-		return c.JSON(http.StatusInternalServerError, err.Error())
+		return c.JSON(http.StatusNotFound, err.Error())
 	}
 	return c.JSON(http.StatusOK, user)
 
@@ -46,7 +46,7 @@ func CreateUser(c echo.Context) error {
 	//Encrypted password before saving in database
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(u.Password), bcrypt.DefaultCost)
 	if err != nil {
-		panic(err)
+		return c.JSON(http.StatusInternalServerError, err.Error())
 	}
 
 	if helper.ValidateEmail(u.Email) == false {
@@ -99,12 +99,12 @@ func Login(c echo.Context) error {
 	}
 	userCheckPassword, err := db.Manager.GetUserByEmail(u.Email)
 	if err != nil {
-		return c.String(http.StatusBadRequest, "The user didn't exist")
+		return c.String(http.StatusNotFound, "The user didn't exist")
 	}
 
 	err = bcrypt.CompareHashAndPassword([]byte(userCheckPassword.Password), []byte(u.Password))
 	if err != nil {
-		return c.String(http.StatusBadRequest, "The Password is not correct")
+		return c.String(http.StatusNotFound, "The Password is not correct")
 	}
 
 	user, err := db.Manager.GetUserByEmailAndPass(u.Email, userCheckPassword.Password)
@@ -139,7 +139,7 @@ func GetNews(c echo.Context) error {
 	newsId := c.Param("id")
 	news, err := db.Manager.GetNewsById(newsId)
 	if err != nil {
-		return c.JSON(http.StatusBadRequest, "Not existed")
+		return c.JSON(http.StatusNotFound, "Not existed")
 
 	}
 	return c.JSON(http.StatusOK, news)
@@ -156,7 +156,7 @@ func GetAllNews(c echo.Context) error {
 		news, err = db.Manager.GetAllBriefInfo()
 	}
 	if err != nil {
-		return c.JSON(http.StatusBadRequest, "Not existed")
+		return c.JSON(http.StatusNotFound, "Not existed")
 	}
 	return c.JSON(http.StatusOK, news)
 
@@ -181,7 +181,7 @@ func DeleteNews(c echo.Context) error {
 
 	news, err := db.Manager.GetNewsById(newsId)
 	if err != nil {
-		return c.JSON(http.StatusInternalServerError, err.Error())
+		return c.JSON(http.StatusNotFound, err.Error())
 
 	}
 
@@ -207,7 +207,7 @@ func CreateFormRecruitment(c echo.Context) error {
 
 	err := api.ChatPostMessage(channelName, "You received a new application form!", nil)
 	if err != nil {
-		panic(err)
+		return c.JSON(http.StatusInternalServerError, err.Error())
 	}
 
 	f := new(model.Form_recruitment)
