@@ -79,9 +79,15 @@ export default class AdminLogin extends Component {
     render(){
         if(this.state.isLogged){
             return(
-                <Button className="centered" bsStyle="danger" onClick={() => this.handleLogout()}>
-                    Sign out
-                </Button>
+                <div>
+                    <h1>You've already signed in</h1>
+                    <Button className="centered" bsStyle="danger" onClick={() => this.handleLogout()}>
+                        Sign out
+                    </Button>
+                    <Button className="centered" bsStyle="primary" onClick={() => browserHistory.push('/admin/cms')}>
+                        Get back
+                    </Button>
+                </div>
             )
         }else{
             return(

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import {url} from '../config'
 
-export default function(callback){
+export default function checkValidToken(callback){
     let token = localStorage.getItem('token')
     if(token){
         var instance = axios.create({
