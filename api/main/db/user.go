@@ -18,6 +18,13 @@ This function will connect to database and
 // 	return c.String(http.StatusOK, "aaa")
 
 // }
+
+func (m *DBManager) GetAllUsers() (users []model.User, err error) {
+	err = m.database.Find(&users).Error
+	return
+
+}
+
 func (m *DBManager) GetUserById(id string) (user model.User, err error) {
 	err = m.database.Find(&user, id).Error
 	return
@@ -46,6 +53,11 @@ func (m *DBManager) SaveUser(e string, p string) (err error) {
 
 func (m *DBManager) UpdateUserInfo(id string, p string) (user model.User, err error) {
 	err = m.database.Find(&user, id).Update(&model.User{Password: p}).Error
+	return
+}
+
+func (m *DBManager) DeleteUser(user model.User) (err error) {
+	err = m.database.Delete(&user).Error
 	return
 }
 

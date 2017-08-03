@@ -41,10 +41,10 @@ func main() {
 
 	//RESTFUL api for user
 	e.GET("/users/:id", handler.GetUser)
+	e.GET("/users", handler.GetAllUsers)
 	e.POST("/users", handler.CreateUser)
 	e.PUT("/users/:id", handler.UpdateUser)
-
-	// e.DELETE("/users/:id", handler.DeleteUser)
+	e.DELETE("/users/:id", handler.DeleteUser)
 
 	//Check valid or invalid user
 	e.POST("/login", handler.Login)
@@ -59,6 +59,7 @@ func main() {
 
 	//RESTFUL api for formRecruitment
 	// e.GET("/news/:id", handler.GetNews)
+	e.GET("/forms", handler.GetAllFormRecruitment)
 	e.POST("/forms/recruitment", handler.CreateFormRecruitment)
 	// e.PUT("/news/:id", handler.UpdateNews)
 	// e.DELETE("/news/:id", handler.DeleteNews)

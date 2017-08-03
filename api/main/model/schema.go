@@ -10,7 +10,7 @@ type User struct {
 	gorm.Model
 	Email    string `gorm:"type:varchar(100);unique_index" json:"email" validate:"required"`
 	Password string `json:"password" validate:"required"`
-	Role     string `json:"string"`
+	Role     string `json:"role"`
 }
 
 type News struct {
