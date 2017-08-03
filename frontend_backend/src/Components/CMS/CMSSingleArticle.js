@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import axios from 'axios';
-import {api_url} from '../config'
+import {api_url} from '../../config'
 import {Jumbotron} from 'react-bootstrap'
 
 export default class CMSSingleArticle extends Component {

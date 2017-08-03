@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import CMSSummary from './CMSSummary'
-import {api_url} from '../config'
+import {api_url} from '../../config'
 import axios from 'axios'
 
 export default class CMSArticles extends Component {

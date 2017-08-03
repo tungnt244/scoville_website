@@ -1,5 +1,0 @@
-node_modules
-*.log
-dist/server.bundle.js
-dist/assets/browser.bundle.js
-dist/assets/css

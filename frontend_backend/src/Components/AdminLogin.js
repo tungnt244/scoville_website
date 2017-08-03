@@ -3,6 +3,7 @@ import {Form, Col, ControlLabel, FormControl, FormGroup, Button, Alert} from 're
 import axios from 'axios'
 import {url} from '../config'
 import {browserHistory} from 'react-router'
+import checkValidToken from './checkValidToken'
 
 export default class AdminLogin extends Component {
 
@@ -29,11 +30,13 @@ export default class AdminLogin extends Component {
     }
 
     componentDidMount(){
-        let isLogged = localStorage.getItem("token")
-        if(isLogged)
-            this.setState({
-                isLogged: true
+        if(localStorage.getItem("token")) {
+            checkValidToken(()=>{
+                this.setState({
+                    isLogged: true
+                })
             })
+        } else{localStorage.clear()}
     }
 
     handleLogin = (e) => {

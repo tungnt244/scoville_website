@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import TinyMCE from 'react-tinymce';
-import {api_url} from '../config';
+import {api_url} from '../../config';
 import axios from 'axios';
 import {browserHistory} from 'react-router'
 import {Button, Form, FormGroup, FormControl, Col, ControlLabel} from 'react-bootstrap'

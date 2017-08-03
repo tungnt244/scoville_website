@@ -4,11 +4,11 @@ import Layout from './components/Layout';
 import NotFoundPage from './components/NotFoundPage';
 import HomePage from './components/HomePage';
 import AdminLogin from './components/AdminLogin';
-import CMSLayout from './components/CMSLayout';
-import CMSManager from './components/CMSManager';
-import CMSEditor from './components/CMSEditor';
-import CMSArticles from './components/CMSArticles';
-import CMSSingleArticle from './components/CMSSingleArticle';
+import CMSLayout from './components/CMS/CMSLayout';
+import CMSManager from './components/CMS/CMSManager';
+import CMSEditor from './components/CMS/CMSEditor';
+import CMSArticles from './components/CMS/CMSArticles';
+import CMSSingleArticle from './components/CMS/CMSSingleArticle';
 
 const routes = (
     <Route path="/" component={Layout}>

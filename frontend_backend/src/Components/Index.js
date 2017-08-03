@@ -5,4 +5,3 @@ import '../Styles/index.css'
 window.onload = () => {
     ReactDOM.render(<AppRoute/>, document.getElementById('root'));
 }
-

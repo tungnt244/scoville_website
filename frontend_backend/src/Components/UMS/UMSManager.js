@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
-import '../Styles/react-table-bootstrap.css'
+import '../../Styles/react-table-bootstrap.css'
 import axios from 'axios'
-import {url} from '../config'
+import {url} from '../../config'
 import {browserHistory} from 'react-router'
 import {Grid, Row, Button, Form, FormGroup, FormControl, Col, ControlLabel} from 'react-bootstrap'
 
@@ -11,12 +11,8 @@ export default class CMSManager extends Component {
     constructor(props){
         super(props)
         this.state = {
-            articles : []
+            users : []
         }
-    }
-
-    priceFormatter(cell, row){
-        return '<i class="glyphicon glyphicon-usd"></i> ' + cell;
     }
 
     editButton = (cell, row) => {
@@ -34,7 +30,6 @@ export default class CMSManager extends Component {
             <Button bsStyle="danger"
                 onClick={()=>{
                     axios.delete(url +'/cms/news/'+row.id).then(response => {
-                        {/* console.log('response', response) */}
                         axios.get(url +'/cms/news/brief').then(response => {
                             this.setState({
                                 articles: response.data
@@ -67,7 +62,7 @@ export default class CMSManager extends Component {
             <div>
                 <Grid>
                     <Row className="show-grid">
-                        <h1>Manage Articles</h1>
+                        <h1>Manage Users</h1>
                     </Row>
                     <Row className="show-grid">
                         <Button bsStyle="success" onClick={()=>{
