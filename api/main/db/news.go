@@ -14,7 +14,7 @@ func (m *DBManager) GetNewsById(id string) (n model.News, err error) {
 	return
 }
 
-func (m *DBManager) GetAll() (n []model.News, err error) {
+func (m *DBManager) GetAllNews() (n []model.News, err error) {
 	err = m.database.Find(&n).Error
 	return
 }

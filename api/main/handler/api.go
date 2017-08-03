@@ -19,11 +19,23 @@ const (
 
 /*
 	Function to controllr User api
+	_Get all users
 	_Get user with id
 	_Check valid and invalid user
 	_Create new user with enrypted password
 	_Update user information
+	_Delete user with the given id
 */
+func GetAllUsers(c echo.Context) error {
+	var users []model.User
+	var err error
+	users, err = db.Manager.GetAllUsers()
+	if err != nil {
+		return c.JSON(http.StatusNotFound, err.Error())
+	}
+	return c.JSON(http.StatusOK, users)
+}
+
 func GetUser(c echo.Context) error {
 	userId := c.Param("id")
 	user, err := db.Manager.GetUserById(userId)
@@ -114,6 +126,22 @@ func Login(c echo.Context) error {
 	return c.JSON(http.StatusOK, user.Email)
 }
 
+func DeleteUser(c echo.Context) error {
+	userId := c.Param("id")
+
+	user, err := db.Manager.GetUserById(userId)
+	if err != nil {
+		return c.JSON(http.StatusNotFound, err.Error())
+	}
+
+	err = db.Manager.DeleteUser(user)
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, err.Error())
+	}
+	return c.JSON(http.StatusOK, "Successful deleted")
+
+}
+
 /*
 	Function to controllr News api
 	_Get a news with the given id
@@ -151,7 +179,7 @@ func GetAllNews(c echo.Context) error {
 	var news []model.News
 	var err error
 	if checkUrl == "/news" {
-		news, err = db.Manager.GetAll()
+		news, err = db.Manager.GetAllNews()
 	} else {
 		news, err = db.Manager.GetAllBriefInfo()
 	}
@@ -200,6 +228,15 @@ func DeleteNews(c echo.Context) error {
 	_Update information of formRecruitment
 	_Delete formRecruitment with the given id
 */
+func GetAllFormRecruitment(c echo.Context) error {
+	var formRecruitments []model.Form_recruitment
+	var err error
+	formRecruitments, err = db.Manager.GetAllForms()
+	if err != nil {
+		return c.JSON(http.StatusNotFound, err.Error())
+	}
+	return c.JSON(http.StatusOK, formRecruitments)
+}
 
 func CreateFormRecruitment(c echo.Context) error {
 
