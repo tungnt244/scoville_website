@@ -6,7 +6,7 @@ import (
 
 func (m *DBManager) SaveFormRecruitment(n *model.Form_recruitment) (err error) {
 	err = m.database.Create(&model.Form_recruitment{FirstName: n.FirstName, LastName: n.LastName, Email: n.Email,
-		Telephone: n.Telephone, Position: n.Position, Advertisment: n.Advertisment, Status: n.Status}).Error
+		Telephone: n.Telephone, Position: n.Position, Advertisement: n.Advertisement, Status: n.Status}).Error
 	return
 }
 
