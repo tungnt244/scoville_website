@@ -4,7 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build:dev": "webpack --watch",
+    "build:dev": "webpack --watch --config webpackfrontend.config.js",
+    "build:back": "webpack --watch",
     "build:production": "webpack -p",
     "start": "./node_modules/.bin/nodemon ./dist/server.bundle.js"
   },
