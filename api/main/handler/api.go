@@ -9,12 +9,13 @@ import (
 	// "fmt"
 	// "gopkg.in/go-playground/validator.v9"
 	"github.com/bluele/slack"
+	_ "gopkg.in/gomail.v2"
 	"net/http"
 )
 
 const (
 	token       = "xoxp-134104585698-215180420103-220014213207-962f0f16d5e49cb173fc8b25a338e363"
-	channelName = "internship2018_a"
+	channelName = "api_call_slack"
 )
 
 /*
@@ -222,36 +223,86 @@ func DeleteNews(c echo.Context) error {
 }
 
 /*
-	Function to controllr formRecruitment api
-	_Get a formRecruitment with the given id
-	_Create a formRecruitment
-	_Update information of formRecruitment
-	_Delete formRecruitment with the given id
+	Function to controllr formContact api
+	_Get all formContact
+	_Get all general form
+	_Get all engineer form
+	_Create a formContact
+	_Update status of formContact
+	_Delete formContact with the given id
 */
-func GetAllFormRecruitment(c echo.Context) error {
-	var formRecruitments []model.Form_recruitment
+func GetAllFormContact(c echo.Context) error {
+	var formContacts []model.Form_contact
 	var err error
-	formRecruitments, err = db.Manager.GetAllForms()
+	formContacts, err = db.Manager.GetAllForms()
 	if err != nil {
 		return c.JSON(http.StatusNotFound, err.Error())
 	}
-	return c.JSON(http.StatusOK, formRecruitments)
+	return c.JSON(http.StatusOK, formContacts)
 }
 
-func CreateFormRecruitment(c echo.Context) error {
+func GetGeneralForm(c echo.Context) error {
+	var formContacts []model.Form_contact
+	var err error
+	formContacts, err = db.Manager.GetGeneralForm()
+	if err != nil {
+		return c.JSON(http.StatusNotFound, err.Error())
+	}
+	return c.JSON(http.StatusOK, formContacts)
+}
+
+func GetEngineerForm(c echo.Context) error {
+	var formContacts []model.Form_contact
+	var err error
+	formContacts, err = db.Manager.GetEngineerForm()
+	if err != nil {
+		return c.JSON(http.StatusNotFound, err.Error())
+	}
+	return c.JSON(http.StatusOK, formContacts)
+}
+
+func UpdateFormContact(c echo.Context) error {
+	formId := c.Param("id")
+	f := new(model.Form_contact)
+	if err := c.Bind(f); err != nil {
+		return c.JSON(http.StatusBadRequest, err)
+	}
+
+	_, err := db.Manager.UpdateFormStatus(formId, f.Status)
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, err.Error())
+	}
+	return c.JSON(http.StatusOK, "Successful updated")
+}
+
+func CreateFormContact(c echo.Context) error {
 
 	api := slack.New(token)
 
-	err := api.ChatPostMessage(channelName, "You received a new application form!", nil)
+	err := api.ChatPostMessage(channelName, "You received a new form!", nil)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, err.Error())
 	}
 
-	f := new(model.Form_recruitment)
+	// m := gomail.NewMessage()
+	// m.SetHeader("From", "tommythien95@gmail.com")
+	// m.SetHeader("To", "info.thien.nguyen@gmail.com")
+	// m.SetHeader("Subject", "I am testing")
+	// m.SetBody("text/html", "Hello <b>Thien</b> and <i>This is me</i>!")
+
+	// d := gomail.Dialer{Host: "localhost", Port: 4444}
+	// if err := d.DialAndSend(m); err != nil {
+	// 	return c.JSON(http.StatusInternalServerError, err.Error())
+	// }
+
+	f := new(model.Form_contact)
 	if err := c.Bind(f); err != nil {
 		return c.JSON(http.StatusBadRequest, err)
 	}
-	err = db.Manager.SaveFormRecruitment(f)
+	if f.LinkGithub != "" {
+		f.Position = "Engineer"
+	}
+	err = db.Manager.SaveFormContact(f)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, err.Error())
 	}

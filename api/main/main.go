@@ -57,10 +57,14 @@ func main() {
 	e.PUT("/news/:id", handler.UpdateNews)
 	e.DELETE("/news/:id", handler.DeleteNews)
 
-	//RESTFUL api for formRecruitment
+	//RESTFUL api for formContact
 	// e.GET("/news/:id", handler.GetNews)
-	e.GET("/forms", handler.GetAllFormRecruitment)
-	e.POST("/forms/recruitment", handler.CreateFormRecruitment)
+	e.GET("/forms/contact", handler.GetAllFormContact)
+	e.GET("/forms/contact/general", handler.GetGeneralForm)
+	e.GET("/forms/contact/engineer", handler.GetEngineerForm)
+	e.PUT("/forms/contact/:id", handler.UpdateFormContact)
+	e.POST("/forms/contact", handler.CreateFormContact)
+
 	// e.PUT("/news/:id", handler.UpdateNews)
 	// e.DELETE("/news/:id", handler.DeleteNews)
 

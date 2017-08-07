@@ -1,14 +1,12 @@
 -- +goose Up
 -- SQL in this section is executed when the migration is applied.
-CREATE TABLE form_recruitments (
+CREATE TABLE form_contacts (
     id SERIAL NOT NULL ,
-    first_name varchar(255) NOT NULL,
-    last_name varchar(255) NOT NULL,
     email  varchar(255) NOT NULL,
-    telephone varchar(255) NOT NULL,
-    position varchar(255) NOT NULL,
-    advertisement varchar(255) NOT NULL,
-    status varchar(50) NOT NULL DEFAULT 'NOT PROCESSED',
+    self_pr text  NOT NULL,
+    link_github  varchar(100)  NULL,
+    position varchar(50)  NOT NULL DEFAULT 'General Staff',
+    status varchar(50) NOT NULL DEFAULT 'Not Processed',
     created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     
     PRIMARY KEY(id)
@@ -16,4 +14,4 @@ CREATE TABLE form_recruitments (
 );
 -- +goose Down
 -- SQL in this section is executed when the migration is rolled back.
-DROP TABLE form_recruitments;
+DROP TABLE form_contact;
