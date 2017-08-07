@@ -8,3 +8,9 @@ Install and run program:
 3, "yarn run start" to start
 
 4, Time to make change to the code and it will be automatically built and run
+
+/admin/login to login
+
+/admin/cms for cms manager
+
+/admin/users for user manager

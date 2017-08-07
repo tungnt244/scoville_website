@@ -70,6 +70,11 @@ export default class CMSManager extends Component {
                         browserHistory.push('/admin/cms/editor')
                         }}>Create</Button>
                     </Row>
+                    <Row className="show-grid">
+                        <Button bsStyle="primary" onClick={()=>{
+                        browserHistory.push('/admin/users')
+                        }}>User Manager</Button>
+                    </Row>
                 </Grid>
                 
                 <BootstrapTable data={articles} >

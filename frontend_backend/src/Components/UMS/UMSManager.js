@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import '../../Styles/react-table-bootstrap.css'
 import axios from 'axios'
-import {url} from '../../config'
+import {api_url} from '../../config'
 import {browserHistory} from 'react-router'
 import {Grid, Row, Button, Form, FormGroup, FormControl, Col, ControlLabel} from 'react-bootstrap'
 
@@ -16,10 +16,11 @@ export default class CMSManager extends Component {
     }
 
     editButton = (cell, row) => {
+        console.log('id', row.ID)
         return (
         <Button bsStyle="primary"
             onClick={ () => {
-                browserHistory.push('/admin/cms/editor/' + row.id)
+                browserHistory.push('/admin/users/' + row.ID)
             } }
         >Edit</Button>
         );
@@ -29,10 +30,10 @@ export default class CMSManager extends Component {
         return(
             <Button bsStyle="danger"
                 onClick={()=>{
-                    axios.delete(url +'/cms/news/'+row.id).then(response => {
-                        axios.get(url +'/cms/news/brief').then(response => {
+                    axios.delete(api_url +'/users/'+row.ID).then(response => {
+                        axios.get(url +'/users').then(response => {
                             this.setState({
-                                articles: response.data
+                                users: response.data
                             })
                         }).catch(error => {
                             console.log('error: ', error)
@@ -46,10 +47,10 @@ export default class CMSManager extends Component {
     }
 
     componentDidMount(){
-        axios.get(url +'/cms/news/brief').then(response => {
+        axios.get(api_url +'/users').then(response => {
             console.log('data', response.data)
             this.setState({
-                articles: response.data
+                users: response.data
             })
         }).catch(error => {
             console.log('error: ', error)
@@ -57,7 +58,7 @@ export default class CMSManager extends Component {
     }
 
     render(){
-        let articles = this.state.articles
+        let users = this.state.users
         return(
             <div>
                 <Grid>
@@ -66,15 +67,20 @@ export default class CMSManager extends Component {
                     </Row>
                     <Row className="show-grid">
                         <Button bsStyle="success" onClick={()=>{
-                        browserHistory.push('/admin/cms/editor')
+                        browserHistory.push('/admin/users/create')
                         }}>Create</Button>
+                    </Row>
+                    <Row className="show-grid">
+                        <Button bsStyle="primary" onClick={()=>{
+                        browserHistory.push('/admin/cms')
+                        }}>CMS Manager</Button>
                     </Row>
                 </Grid>
                 
-                <BootstrapTable data={articles} >
-                    <TableHeaderColumn dataField="id" isKey={true} >Article ID</TableHeaderColumn> 
-                    <TableHeaderColumn dataField="title" >Title</TableHeaderColumn>
-                    <TableHeaderColumn dataField="description">Description</TableHeaderColumn>
+                <BootstrapTable data={users} >
+                    <TableHeaderColumn dataField="ID" isKey={true} >User ID</TableHeaderColumn> 
+                    <TableHeaderColumn dataField="email" >Email</TableHeaderColumn>
+                    <TableHeaderColumn dataField="CreatedAt">Created at</TableHeaderColumn>
                     <TableHeaderColumn dataFormat={this.editButton}>Edit</TableHeaderColumn>
                     <TableHeaderColumn dataFormat={(cell,row) => this.deleteButton(cell, row)}>Delete</TableHeaderColumn>
                 </BootstrapTable>

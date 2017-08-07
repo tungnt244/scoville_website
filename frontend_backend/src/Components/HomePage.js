@@ -16,7 +16,7 @@ export default class HomePage extends React.Component {
                         <div className="collapse navbar-collapse" id="navbar-collapse">
                             <ul className="nav navbar-nav navbar-right">
                                 <li ><a href="#" id="logo"  className="navbar-left"><img className="img-responsive" src="./images/logo.png"/></a></li>
-                                <li ><a className="big-word text-right" href="#HOME">    Ne/  </a></li>
+                                <li ><a className="big-word text-right" href="#HOME">HOME/</a></li>
                                 <li ><a className="big-word text-right" href="#COMPANY">COMPANY/  </a></li>
                                 <li ><a className="big-word text-right" href="#SERVICES">SERVICES/  </a></li>
                                 <li ><a className="big-word text-right" href="#RECRUITMENT">RECRUIT/  </a></li>
