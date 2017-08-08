@@ -223,47 +223,47 @@ func DeleteNews(c echo.Context) error {
 }
 
 /*
-	Function to controllr formContact api
-	_Get all formContact
+	Function to controllr formRecruitment api
+	_Get all formRecruitment
 	_Get all general form
 	_Get all engineer form
-	_Create a formContact
-	_Update status of formContact
-	_Delete formContact with the given id
+	_Create a formRecruitment
+	_Update status of formRecruitment
+	_Delete formRecruitment with the given id
 */
-func GetAllFormContact(c echo.Context) error {
-	var formContacts []model.Form_contact
+func GetAllFormRecruitment(c echo.Context) error {
+	var formRecruitments []model.Form_recruitment
 	var err error
-	formContacts, err = db.Manager.GetAllForms()
+	formRecruitments, err = db.Manager.GetAllForms()
 	if err != nil {
 		return c.JSON(http.StatusNotFound, err.Error())
 	}
-	return c.JSON(http.StatusOK, formContacts)
+	return c.JSON(http.StatusOK, formRecruitments)
 }
 
 func GetGeneralForm(c echo.Context) error {
-	var formContacts []model.Form_contact
+	var formRecruitments []model.Form_recruitment
 	var err error
-	formContacts, err = db.Manager.GetGeneralForm()
+	formRecruitments, err = db.Manager.GetGeneralForm()
 	if err != nil {
 		return c.JSON(http.StatusNotFound, err.Error())
 	}
-	return c.JSON(http.StatusOK, formContacts)
+	return c.JSON(http.StatusOK, formRecruitments)
 }
 
 func GetEngineerForm(c echo.Context) error {
-	var formContacts []model.Form_contact
+	var formRecruitments []model.Form_recruitment
 	var err error
-	formContacts, err = db.Manager.GetEngineerForm()
+	formRecruitments, err = db.Manager.GetEngineerForm()
 	if err != nil {
 		return c.JSON(http.StatusNotFound, err.Error())
 	}
-	return c.JSON(http.StatusOK, formContacts)
+	return c.JSON(http.StatusOK, formRecruitments)
 }
 
-func UpdateFormContact(c echo.Context) error {
+func UpdateFormRecruitment(c echo.Context) error {
 	formId := c.Param("id")
-	f := new(model.Form_contact)
+	f := new(model.Form_recruitment)
 	if err := c.Bind(f); err != nil {
 		return c.JSON(http.StatusBadRequest, err)
 	}
@@ -275,7 +275,7 @@ func UpdateFormContact(c echo.Context) error {
 	return c.JSON(http.StatusOK, "Successful updated")
 }
 
-func CreateFormContact(c echo.Context) error {
+func CreateFormRecruitment(c echo.Context) error {
 
 	api := slack.New(token)
 
@@ -286,23 +286,25 @@ func CreateFormContact(c echo.Context) error {
 
 	// m := gomail.NewMessage()
 	// m.SetHeader("From", "tommythien95@gmail.com")
-	// m.SetHeader("To", "info.thien.nguyen@gmail.com")
+	// m.SetHeader("To", "tommythien95@gmail.com")
 	// m.SetHeader("Subject", "I am testing")
 	// m.SetBody("text/html", "Hello <b>Thien</b> and <i>This is me</i>!")
 
-	// d := gomail.Dialer{Host: "localhost", Port: 4444}
+	// d := gomail.NewDialer("smtp.gmail.com", 465, "", "")
+
+	// // Send the email to Bob, Cora and Dan.
 	// if err := d.DialAndSend(m); err != nil {
-	// 	return c.JSON(http.StatusInternalServerError, err.Error())
+	// 	panic(err)
 	// }
 
-	f := new(model.Form_contact)
+	f := new(model.Form_recruitment)
 	if err := c.Bind(f); err != nil {
 		return c.JSON(http.StatusBadRequest, err)
 	}
 	if f.LinkGithub != "" {
 		f.Position = "Engineer"
 	}
-	err = db.Manager.SaveFormContact(f)
+	err = db.Manager.SaveFormRecruitment(f)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, err.Error())
 	}

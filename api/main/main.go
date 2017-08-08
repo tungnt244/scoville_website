@@ -59,11 +59,11 @@ func main() {
 
 	//RESTFUL api for formContact
 	// e.GET("/news/:id", handler.GetNews)
-	e.GET("/forms/contact", handler.GetAllFormContact)
-	e.GET("/forms/contact/general", handler.GetGeneralForm)
-	e.GET("/forms/contact/engineer", handler.GetEngineerForm)
-	e.PUT("/forms/contact/:id", handler.UpdateFormContact)
-	e.POST("/forms/contact", handler.CreateFormContact)
+	e.GET("/forms/recruitment", handler.GetAllFormRecruitment)
+	e.GET("/forms/recruitment/general", handler.GetGeneralForm)
+	e.GET("/forms/recruitment/engineer", handler.GetEngineerForm)
+	e.PUT("/forms/recruitment/:id", handler.UpdateFormRecruitment)
+	e.POST("/forms/recruitment", handler.CreateFormRecruitment)
 
 	// e.PUT("/news/:id", handler.UpdateNews)
 	// e.DELETE("/news/:id", handler.DeleteNews)
