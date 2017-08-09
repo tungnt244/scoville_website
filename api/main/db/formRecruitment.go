@@ -9,9 +9,24 @@ func (m *DBManager) GetAllForms() (n []model.Form_recruitment, err error) {
 	return
 }
 
+func (m *DBManager) GetGeneralForm() (n []model.Form_recruitment, err error) {
+	err = m.database.Where(&model.Form_recruitment{Position: "General Staff"}).Find(&n).Error
+	return
+}
+
+func (m *DBManager) GetEngineerForm() (n []model.Form_recruitment, err error) {
+	err = m.database.Where(&model.Form_recruitment{Position: "Engineer"}).Find(&n).Error
+	return
+}
+
+func (m *DBManager) UpdateFormStatus(id string, status string) (form model.Form_recruitment, err error) {
+	err = m.database.Find(&form, id).Update(&model.Form_recruitment{Status: status}).Error
+	return
+}
+
 func (m *DBManager) SaveFormRecruitment(n *model.Form_recruitment) (err error) {
-	err = m.database.Create(&model.Form_recruitment{FirstName: n.FirstName, LastName: n.LastName, Email: n.Email,
-		Telephone: n.Telephone, Position: n.Position, Advertisement: n.Advertisement, Status: n.Status}).Error
+	err = m.database.Create(&model.Form_recruitment{Email: n.Email, SelfPR: n.SelfPR, LinkGithub: n.LinkGithub,
+		Position: n.Position, Status: n.Status}).Error
 	return
 }
 

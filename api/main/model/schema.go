@@ -23,13 +23,20 @@ type News struct {
 }
 
 type Form_recruitment struct {
-	ID            uint      `gorm:"primary_key" json:"id`
-	FirstName     string    `gorm:"size:255" json:"first_name"`
-	LastName      string    `gorm:"size:255" json:"last_name"`
-	Email         string    `gorm:"type:varchar(100)" json:"email"`
-	Telephone     string    `gorm:"size:255" json:"telephone"`
-	Position      string    `gorm:"size:255" json:"field"`
-	Advertisement string    `gorm:"size:255" json:"advertisement"`
-	Status        string    `gorm:"string:20" json:"status"`
-	CreatedAt     time.Time `gorm:"column:created_at;type:datetime;default:CURRENT_TIMESTAMP"`
+	ID         uint      `gorm:"primary_key" json:"id"`
+	Email      string    `gorm:"type:varchar(100)" json:"email"`
+	SelfPR     string    `json:"self_pr"`
+	LinkGithub string    `json:"link_github"`
+	Position   string    `gorm:"default:'General Staff'" json:"position"`
+	Status     string    `gorm:"string:20;default:'Not Processed'" json:"status"`
+	CreatedAt  time.Time `gorm:"column:created_at;type:datetime;default:CURRENT_TIMESTAMP"`
+}
+type Form_contact struct {
+	ID                   uint      `gorm:"primary_key" json:"id"`
+	CompanyName          string    `gorm:"type:varchar(100)" json:"company_name"`
+	StaffName            string    `json:"staff_name"`
+	EmailAddress         string    `json:"email_address"`
+	PhoneNumber          string    `gorm:"default:'General Staff'" json:"phone_number"`
+	DescriptionOfContact string    `gorm:"string:20;default:'Not Processed'" json:"description_of_contact"`
+	CreatedAt            time.Time `gorm:"column:created_at;type:datetime;default:CURRENT_TIMESTAMP"`
 }
