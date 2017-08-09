@@ -1,3 +1,4 @@
 vendor
 dep
 Gopkg.lock
+.env
