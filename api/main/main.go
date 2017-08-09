@@ -15,7 +15,6 @@ import (
 )
 
 func main() {
-
 	//Create echo instance
 	e := echo.New()
 	e.Validator = &db.CustomValidator{ValidatorCustom: validator.New()}

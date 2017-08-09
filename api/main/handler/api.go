@@ -9,7 +9,11 @@ import (
 	// "fmt"
 	// "gopkg.in/go-playground/validator.v9"
 	"github.com/bluele/slack"
-	_ "gopkg.in/gomail.v2"
+	"github.com/joho/godotenv"
+	"gopkg.in/gomail.v2"
+	"log"
+	"os"
+
 	"net/http"
 )
 
@@ -276,26 +280,33 @@ func UpdateFormRecruitment(c echo.Context) error {
 }
 
 func CreateFormRecruitment(c echo.Context) error {
+	//Load values in environment files
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
+	email := os.Getenv("EMAIL")
+	pass := os.Getenv("PASS")
 
 	api := slack.New(token)
 
-	err := api.ChatPostMessage(channelName, "You received a new form!", nil)
+	err = api.ChatPostMessage(channelName, "You received a new form!", nil)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, err.Error())
 	}
 
-	// m := gomail.NewMessage()
-	// m.SetHeader("From", "tommythien95@gmail.com")
-	// m.SetHeader("To", "tommythien95@gmail.com")
-	// m.SetHeader("Subject", "I am testing")
-	// m.SetBody("text/html", "Hello <b>Thien</b> and <i>This is me</i>!")
+	m := gomail.NewMessage()
+	m.SetHeader("From", "thien@sc0ville.com")
+	m.SetHeader("To", "thien@sc0ville.com")
+	m.SetHeader("Subject", "I am testing")
+	m.SetBody("text/html", "Hello <b>Thien</b> and <i>This is me</i>!")
 
-	// d := gomail.NewDialer("smtp.gmail.com", 465, "", "")
+	d := gomail.NewDialer("smtp.gmail.com", 465, email, pass)
 
-	// // Send the email to Bob, Cora and Dan.
-	// if err := d.DialAndSend(m); err != nil {
-	// 	panic(err)
-	// }
+	// Send the email to Bob, Cora and Dan.
+	if err := d.DialAndSend(m); err != nil {
+		panic(err)
+	}
 
 	f := new(model.Form_recruitment)
 	if err := c.Bind(f); err != nil {
