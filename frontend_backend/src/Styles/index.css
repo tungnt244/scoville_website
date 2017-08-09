@@ -1,62 +1,117 @@
-body{
-	padding-top: 16.5vmax;
-}
-@media screen and (max-width: 378px) {
-    body {
-        padding-top: 13.5vw;
-         }
-}
 ul.nav.navbar-nav.navbar-right{
-  padding-top: 2%;
+  padding-top: 1.3%;
+  padding-right: 1.5%;
 }
 a.big-word.text-right{
   padding-left: 5%;
   padding-right: 5%;
   text-align: center;
   white-space: pre;
+  background-color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
 }
+.fixed{
+  position: fixed;
+  top:0;
+  z-index: 10000;
+  width:100%;
+}
+#logo-container{
+  height: 100%;
+  padding-top: 1%;
+  padding-bottom: 0px;
+}
+
 .big-word{
   font-family: Helvetica-Bold;
   font-weight: bold;
-  text-align: center;
   color: #070707;
-  font-size: 1.7vmax;
-  background-color: #e0dadb;
+  font-size: 1.7vw;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+.navbar-inverse .navbar-nav>li>a:focus, .navbar-inverse .navbar-nav>li>a:hover{
+  color:black;
+}
+
+@media screen and (min-width: 1030px){
+  #contact-word{
+    font-size: 1.35vw;
+  }
+}
+@media screen and (max-width: 1030px) and (min-width: 768px){
+.big-word {
+        font-size: 1.5vw;
+         }
+#contact-word{
+        font-size: 1.5vw;
+}
+#logo-cointainer{
+  padding-right: 0px;
+}
+#logo{
+  width: 80%;
+  margin-right: -20px;
+}
+}
+@media screen and (min-width: 768px){
+  #contact-button{
+    padding-left: 10%;
+    margin-right: 15%;
+  }
+  #right-nav{
+    padding-right: 5vw;
+  }
+
+}
+@media screen and (max-width: 767px){
+  .big-word {
+        font-size: 1.8vw;
+         }
+#contact-word{
+        font-size: 1.8vw;
+}
+#logo-cointainer{
+  padding-right: 0px;
+}
+#logo{
+  width: 50%;
+  margin-right: -20px;
+}
+}
+
+#li-button{
+  text-align: center;
 }
 .grey-background{
-	background-color: #f6f6f6;
+  background-color: #f6f6f6;
 }
 #my-navbar{
-	font-family: Helvetica-Bold;
-  background-color: #e0dadb;
+  font-family: Helvetica-Bold;
+  background-color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 0%;
 }
-div#nav-container.container{
-  margin-left: 0%;
-  padding-left: 0%;
-  height:80%;
-}
+
 .nav>li>a>img{
   vertical-align: top;
 }
-a#logo.navbar-left{
-  padding-top: 0%;
-  padding-left: 0%;
-}
-#logo{
-  background-color: #e0dadb;
-  border: none;
-  text-align: left;
-  padding-right: 0px;
-  padding-bottom: 0px;
-}
 .section-heading{
   font-family: Helvetica-Bold;
-  font-size: 2.9vmax;
+  font-size: 3.2vmax;
   color: #606366;
 }
 .big-line-space{
-	line-height: 190%;
+  line-height: 190%;
   white-space: normal;
+  text-align: left;
+}
+
+.small-row{
+  width: 80%;
+  margin: auto;
+}
+#small-text{
+  font-size: 1.8vmax;
+  width: 95%;
 }
 .red-text{
   font-family: Helvetica-Bold;
@@ -67,12 +122,19 @@ a#logo.navbar-left{
   margin-top: 7%;
 }
 .japanese-text{
-	font-size: 2.0vmax;
-	font-family: Hiragino Kaku Gothic Pro;
+  font-size: 2.0vmax;
+  font-family: Hiragino Kaku Gothic Pro;
   line-height: 1.75;
-  text-align: center;
   color: #000000;
   font-weight: 550;
+}
+.white-background{
+  margin: auto;
+  width: 70%;
+  background-color: rgba(255, 255, 255, 0.92);
+  margin-top: 8%;
+  padding-top: 0.1%;
+
 }
 .company-text{
   font-size: 2.1vmax;
@@ -80,12 +142,15 @@ a#logo.navbar-left{
   line-height: 1.75;
   text-align: center;
   color: black;
-  font-weight: 900; 
+  font-weight: 900;
+  word-wrap: break-word;
+  margin-right: 5%;
+  margin-left:  5%;
 }
 #small{
-	font-size: 1.6vmax;
-	font-family:Hiragino Kaku Gothic Pro;
-	color: #333333;
+  font-size: 1.6vmax;
+  font-family:Hiragino Kaku Gothic Pro;
+  color: #333333;
 }
 #twoline{
   white-space: normal;
@@ -94,7 +159,7 @@ a#logo.navbar-left{
   white-space: normal;
 }
 hr.style-eight {
-	width:80%;
+  width:80%;
     padding: 0;
     border: none;
     border-top: medium double #333;
@@ -111,37 +176,27 @@ hr.style-eight:after {
     background: white;
     opacity: 0.75;
 }
-#word-contact{
-  font-family: Helvetica-Bold;
-  font-size: 2.2vmax;
-  color: #ffffff;
-}
-#CONTACT{
-  border-top: 0px;
-}
-#CONTACT-container{
-	width: auto;
-  padding-top: 5%;
-  padding-bottom: 8%;
-  background-color: rgba(216, 216, 216, 0.7);
-  border: solid 1px #979797;
-}
+
 div.modal-body{
   margin-left: 10%;
   margin-right: 10%;
 }
 #COMPANY{
-	border-top: none;
+  border-top: none;
 }
 #SERVICES{
-	border-top: none;
+  border-top: none;
 }
 
 #NEWS{
-	border-top: none;
+  border-top: none;
 }
 
-
+#nav-container{
+  background-color: rgba(255, 255, 255, 0.8);
+  padding-left: 0px;
+  padding-right: 0px;
+}
 .center {
     position: absolute;
     top: 50%;
@@ -149,9 +204,10 @@ div.modal-body{
     transform: translate(-50%, -50%);
 }
 .real{
-  font-family: Hiragino Kaku Gothic Pro;
-  font-size: 4.7vmax;
-  color: #000000;
+  font-family: HiraKakuPro-W6;
+  font-size: 2.9vmax;
+  text-align: center;
+  color: #ac241f;
 }
 img#mainimage.img-responsive{
   margin-right: 0%;
@@ -159,7 +215,7 @@ img#mainimage.img-responsive{
 }
 #mainimage { 
     height: auto;
-	  width:100%;
+    width:100%;
     margin-right: 0%;
     padding-right: 0%;
 }
@@ -172,27 +228,33 @@ img#mainimage.img-responsive{
   color: #f22c20;
 }
 
-.contact-text{
-  font-family: Hiragino Kaku Gothic Pro;
-  font-size: 1.7vmax;
-  text-align: left;
-  color: #333333;
-}
 #apply-button{
-  width:50%;
-  border-radius: 100px;
-  background-color: #9b9b9b;
-  border: solid 1px #979797;
+  width:100%;
+  background-color: #ac241f;
+  float: bottom;
+  margin-top: auto;
+  position: absolute;
+  bottom: 0px;
+  left:0px;
+}
+#button{
+  text-align: center;
+  padding-left: 5%;
 }
 #contact-button{
-  width:25%;
-  border-radius: 100px;
-  background-color: #9b9b9b;
-  border: solid 1px #979797;
+  background-color: #ac241f;
+  border: solid 2px #979797;
+  font-family: HiraginoSans-W6;
+  margin-bottom: 0vw;
+  padding-bottom: 0%;
+  margin-right: 1.2vw;
+}
+#contact-form{
+  margin-top: 7%;
 }
 .button-grey{
-	width: 100%;
-	background-color: #9b9b9b;
+  width: 100%;
+  background-color: #9b9b9b;
     border: solid 1px #979797;
     color: white;
     padding: 15px 32px;
@@ -225,20 +287,40 @@ img#mainimage.img-responsive{
   border: solid 1px #979797;
 }
 .page-header{
-	border-bottom: none;
+  border-bottom: none;
 }
 .row1{
   border-width: 2px;
   padding-top:2%; 
   padding-bottom:2%;
 }
-#grey-row{
-  background-color: #eeeeee
-}
 #news-container{
   width:60%;
   padding-top: 8%;
 
+}
+.blue-text{
+  color: #6ab2ce;
+  font-family: HiraKakuPro-W6;
+  font-size: 2.0vmax;
+  cursor: pointer;
+  word-wrap: break-word;
+}
+.button-news{
+  font-size: 3.5vw;
+  border-radius: 30px;
+  background-color: #ac241f;
+  border: solid 1px #979797;
+  margin-top: 8%;
+  cursor: pointer;
+  width: 45%;
+}
+.date-text{
+  font-family: HiraKakuPro-W3;
+  font-size: 1.2vmax;
+  line-height: 1.94;
+  color: #666666;
+  margin-top: 5%;
 }
 .imgcenter{
    margin: 0 auto;
@@ -269,6 +351,7 @@ img#mainimage.img-responsive{
 }
 #ACCESS-heading{
   color: #ffffff;
+  margin-bottom: 4%;
 }
 #COMPANY-container{
     padding-top: 8%;
@@ -276,52 +359,84 @@ img#mainimage.img-responsive{
     background: #F4F6F7 ;
     overflow: hidden;
     padding-bottom: 6%;
-
-}
-#COMPANY-container:before{
-  padding-top: 6%;
-  padding-bottom: 6.8%;
-  background-image: url("/images/scoville_office.jpg");
-  background-color: rgba(216, 216, 216, 0.4);
-  -ms-background-size: cover;
-  -o-background-size: cover;
-  -moz-background-size: cover;
-  -webkit-background-size: cover;
-  background-size: cover;
-  content: ' ';
-  display: block;
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  opacity: 0.4;
-  background-position: 50% 0;
+    background-image: url("/images/scoville_office.jpg");
+    background-color: rgba(216, 216, 216, 0.4);
+    -ms-background-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
 }
 #RECRUITMENT-container{
-    height: 100vmax; 
-    padding-top: 8%;
-    background: url("/images/recruit_image.png") no-repeat;
-    background-size: cover;
-    padding-bottom: 6%;
+    background: url("/images/recruit_image.png");
+    background-repeat:no-repeat;
+    -webkit-background-size:cover;
+    -moz-background-size:cover;
+    -o-background-size:cover;
+    background-size:cover;
+    background-position:center;
+    padding-top: 10%;
+    padding-bottom: 10%;
+}
+.big-recruit{
+  font-size: 2.7vmax;
+  font-family: HiraMaruPro-W4;
+  -webkit-text-stroke: 1px #979797;
+  margin-top: 5%;
+  margin-bottom: 8%;
+}
+.recruit-text{
+  font-size: 2.0vmax;
+  font-family: HiraKakuPro-W3;
+  line-height: 1.57;
+  color: #333333;
+  text-align: left;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 15%;
+}
+.big-recruit-1{
+  font-size: 2.7vmax;
+  font-family: HiraMaruPro-W4;
+}
+.white-col{
+  background-color: white;
+  padding-right: 0px;
+  padding-left: 0px;
+  padding-top: 5%;
+}
+#equal-height{
+  height: 54vmax;
+  position: relative;
+}
+#equal-height-1{
+  height: 54vmax;
+  position: relative;
+}
+@media screen and (max-width: 767px){
+#equal-height{
+  height: 65vmax;
+}
+#equal-height-1{
+  height: 65vmax;
+}
+}
 
-}
-@media screen and (max-width: 600px) {
-    #RECRUITMENT-container{
-    height: 700px;
-    padding-top: 8%;
-    background-image: url("/images/recruit_image.png");
-    padding-bottom: 6%;
-
-}
-}
 #RECRUITMENT{
   border-top: none;
 }
 #SERVICES-container{
   padding-top: 7%;
   padding-bottom: 7.5%; 
+}
+#services-text-container{
+  width: 80%;
+}
+.recruit-form{
+  margin-top: 10%;
+
 }
 .bottom-padding{
   padding-bottom: 7%;
