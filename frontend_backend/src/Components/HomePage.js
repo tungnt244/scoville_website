@@ -1,37 +1,45 @@
 import React from 'react'
+import '../Styles/index.css'
 
 export default class HomePage extends React.Component {
     render(){
         return(
             <div className="home-page">
-                <nav className="navbar navbar-inverse navbar-fixed-top" id="my-navbar">
-                    <div id="nav-container" className="container">
-                        <div className="navbar-header">
-                            <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">	
+
+                <div className="img-container">
+                    <img className="img-responsive" id="mainimage" src="/images/mainpic.png" alt="Norway" />
+                </div>
+                <nav className="navbar navbar-inverse" id="my-navbar">
+                    <div id="nav-container" className="container-fluid">
+                        <div>
+                            <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">  
                                 <span className="icon-bar"></span>
                                 <span className="icon-bar"></span>
                                 <span className="icon-bar"></span>
                             </button>
                         </div>
+                        <a id="logo-container" className="navbar-brand scroll" >
+                            <img className="img-responsive" id="logo" src="./images/logo.png" title="" />
+                        </a>
                         <div className="collapse navbar-collapse" id="navbar-collapse">
                             <ul className="nav navbar-nav navbar-right">
-                                <li ><a href="#" id="logo"  className="navbar-left"><img className="img-responsive" src="./images/logo.png"/></a></li>
-                                <li ><a className="big-word text-right" href="#HOME">HOME/</a></li>
+                                <li ><a className="big-word text-right" href="">HOME/  </a></li>
                                 <li ><a className="big-word text-right" href="#COMPANY">COMPANY/  </a></li>
                                 <li ><a className="big-word text-right" href="#SERVICES">SERVICES/  </a></li>
-                                <li ><a className="big-word text-right" href="#RECRUITMENT">RECRUIT/  </a></li>
+                                <li ><a className="big-word text-right" href="#RECRUITMENT">RECRUITMENT/   </a></li>
                                 <li ><a className="big-word text-right" href="#NEWS">NEWS/  </a></li>
-                                <li ><a className="big-word text-right" href="#ACCESS">ABOUT/  </a></li>
-                                <li ><a className="big-word text-right" href="#CONTACT">CONTACT/  </a></li>
+                                <li ><a id="right-nav" className="big-word text-right" href="#ACCESS">ABOUT  </a></li>
+                                <li id="li-button">
+                                    <button type="button" id="contact-button" className="btn btn-danger" data-toggle="modal" data-target="#contact-form">
+                                        <p id="contact-word">お問い合わせ</p>
+                                    </button>
+                                </li>
                             </ul>
-                        </div> 
+                        </div>
                         {/* <!-- end of container --> */}
                     </div>
-                    {/* <!-- end of navbar --> */}
                 </nav>
-                <div className="img-container">
-                    <img className="img-responsive" id="mainimage" src="/images/mainpic.png" alt="Norway" />
-                </div>
+                {/* <!-- end of navbar --> */}
 
 
                 <div className="container-fluid" id="COMPANY-container" >
@@ -39,57 +47,57 @@ export default class HomePage extends React.Component {
                     <section>
                         <h2 className="text-center section-heading"><big>{`COMPANY`}</big></h2>
                     </section>
-                    <section><br/><br/>
+                    <div className="white-background">
                         <p className="text-center red-text">{`OUR MISSION`}</p>
                         <p className="company-text text-center">
                             世界に通用する人と事業を創り、</p>
                         <p className="company-text text-center">外貨獲得を通じて日本経済を牽引する
-                        </p>
-                        <br/><br/>
-                    </section>
-                    <section>
-                        <h2 className="text-center red-text">{`OUR VALUE`}</h2>
+                        </p><br/>
+                    </div>
+                    <br/><br/>
+                    <div className="white-background">
+                        <h2 className="text-center red-text">{`OUR VISION`}</h2>
                         <p className="company-text text-center">
                             連続的事業創造を行い、</p>
 <p className="company-text text-center">世界に通ずるプロダクトを創り続ける
                         </p>
                         <br/><br/>
                         <hr id="SERVICES"/>
-                    </section>
+                    </div>
                 </div>
                 {/* <!-- end of COMPANY  --> */}
 
 
-                
-                
+
                 <div className="container-fluid text-center grey-background" id="SERVICES-container">
                     <section>
                         <h2 className="section-heading"><big>SERVICES</big></h2><br/>
                     </section>
                     <p className="real">“real”と”tech driven”の融合</p><br/>
-                    <div className="japanese-text big-line-space">
+                    <div id="services-text-container" className="container japanese-text big-line-space">
                     リアルだけでもない。Webだけでも完結しない。<br/>
                     “人のリアルと融合したproduct”をキーワードに、<br/>
                     <p id="twoline1">事業領域を定めることなく、創業1年半の間に13の事業を創造しています。</p>
                     </div>
-                    <p id="small">
-                        ※年内ローンチ予定事業含む
-                    </p>
-                    <div className="row">
-                        <div className="col-lg-4 col-md-4">
+                    <div className="row small-row">
+                        <div className="col-lg-3 col-md-3">
                             <img className="img-responsive imgcenter" src="/images/mediaicon.png"/>
                             <p className="japanese-text text-center">メディア開発事業</p>
                         </div>
-                        <div className="col-lg-4 col-md-4">
+                        <div className="col-lg-3 col-md-3">
                             <img className="img-responsive imgcenter" src="/images/HR.png"/>
                             <p className="japanese-text text-center">HR領域</p>
                         </div>
-                        <div className="col-lg-4 col-md-4">
+                        <div className="col-lg-3 col-md-3">
                             <img className="img-responsive imgcenter" src="/images/webService.png"/>
                             <p className="japanese-text text-center">ウェブサービス</p>
                         </div>
+                        <div className="col-lg-3 col-md-3">
+                            <img className="img-responsive imgcenter" src="/images/AI.png"/>
+                            <p className="japanese-text text-center">人工知能活用事業</p>
+                        </div>
                     </div>
-                    <div className="row">
+                    <div className="row small-row">
                         <div className="col-lg-3 col-md-3">
                             <img className="img-responsive imgcenter" src="/images/food.png"/>
                             <p className="japanese-text text-center">飲食店事業</p>
@@ -99,77 +107,79 @@ export default class HomePage extends React.Component {
                             <p className="japanese-text text-center">エンジニア教育事業</p>
                         </div>
                         <div className="col-lg-3 col-md-3">
-                            <img className="img-responsive imgcenter" src="/images/AI.png"/>
-                            <p className="japanese-text text-center">人工知能活用事業</p>
-                        </div>
-                        <div className="col-lg-3 col-md-3">
                             <img className="img-responsive imgcenter" src="/images/app.png"/>
                             <p className="japanese-text text-center">アプリ開発事業</p>
                             <hr id="RECRUITMENT"/>
                         </div>
-                    </div>
+                    </div><br/><br/>
+                    <p id="small-text" className="japanese-text text-right">※年内ローンチ予定事業含む </p>
                 </div>
-                
+
+
 
                 {/* <!-- RECRUITMENT --> */}
                 <div className="container-fluid" id="RECRUITMENT-container" >
                     <section>
                         <h2 className="text-center section-heading"><big>{`RECRUIT`}</big></h2>
                     </section><br/><br/><br/><br/><br/>
-                <div className="row">
-                        <div className="col-lg-6 col-md-6">
-                            <img className="img-responsive imgcenter" src="/images/recruit_sale.png"/>
-                            <p className="japanese-text text-center">営業</p>
-                            <div className="form-group">
-                  <div className="text-center">
-                    <button type="button" id="apply-button" className="button-grey btn" data-toggle="modal" data-target="#apply-sale">
-                        送信
+                <div className="row small-row">
+                    <div id="equal-height-1" className="white-col col-lg-5 col-md-5">
+                        <img className="img-responsive imgcenter" src="/images/recruit_engineer.png"/>
+                        <p className="big-recruit japanese-text text-center">エンジニア</p>
+                    <div>
+                    <p className="recruit-text">問題発見解決能力に長けていること。</p>
+                   <div className="text-center">
+                    <button type="button" id="apply-button" className="btn-danger btn big-recruit-1" data-toggle="modal" data-target="#apply-engineer">
+                        エントリー
                     </button>
-                  </div>
-                    <div className="modal fade" id="apply-sale" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                   </div>
+                    <div className="recruit-form modal fade" id="apply-engineer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div className="modal-dialog" role="document">
                             <div className="modal-content">
                                 <div className="modal-header">
-                                  <h2 className="modal-title text-center" id="exampleModalLabel">RECRUIT</h2>
+                                  <h2 className="modal-title text-center" id="exampleModalLabel">Recruitment</h2>
                                   <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                   </button>
                                 </div>
                                 <div className="modal-body">
                                   <form>
-                                    <div className="padding-popup form-group">
-                                      <label for="recipient-name" className="form-control-label">メールアドレス:</label>
-                                      <input type="text" className="form-control" id="recipient-name"/>
+                                    <div className="padding-popup form-group"><br/>
+                                      <input type="text" placeholder="メールアドレス" className="form-control" id="recipient-name"/>
                                     </div>
-                                    <div className="padding-popup form-group">
-                                      <label for="message-text" className="form-control-label">自己PR:</label>
-                                      <textarea className="padding-popup form-control" id="message-text"></textarea>
+                                    <div className="padding-popup form-group"><br/>
+                                      <input placeholder="Github account" type="text" className="form-control" id="github"/>
                                     </div>
-                                    <label>履歴書を送ってください</label><span className="text-left"><input type="file"/></span>
+                                    <div className="padding-popup form-group"><br/>
+                                      <textarea cols="20" rows="10" placeholder="自己PR" className="padding-popup form-control" id="message-text"></textarea>
+                                    </div>
                                   </form>
                                 </div>
                                 <div className="modal-footer">
                                   <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                                  <button type="button" className="btn btn-primary">Send message</button>
+                                  <button type="button" className="btn btn-primary">送信</button>
                                 </div>
                             </div> 
                         </div>
                     </div>
                 </div>
                         </div>
-                        <div className="col-lg-6 col-md-6">
-                            <img className="img-responsive imgcenter" src="/images/recruit_engineer.png"/>
-                            <p className="japanese-text text-center">エンジニア</p>
-                                              <div className="text-center">
-                    <button type="button" id="apply-button" className="button-grey btn" data-toggle="modal" data-target="#apply-engineer">
-                        送信
+                        <div className= "col-lg-2 col-md-2">
+                        </div>
+                    <div id="equal-height" className="white-col col-lg-5 col-md-5">
+                        <img className="img-responsive imgcenter" src="/images/recruit_sale.png"/>
+                        <p className="big-recruit japanese-text text-center">営業</p>
+                        <p className="recruit-text">お客様の課題は何かをしっかり把握することができ、それに対して適切なアドバイスを行なえる者。</p>
+                  <div className="text-center">
+                    <button type="button" id="apply-button" className="big-recruit-1 btn-danger btn" data-toggle="modal" data-target="#apply-sale">
+                        エントリー
                     </button>
                   </div>
-                    <div className="modal fade" id="apply-engineer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="recruit-form modal fade " id="apply-sale" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div className="modal-dialog" role="document">
                             <div className="modal-content">
                                 <div className="modal-header">
-                                  <h2 className="modal-title text-center" id="exampleModalLabel">RECRUIT</h2>
+                                  <h2 className="modal-title text-center" id="exampleModalLabel">Recruitment</h2>
                                   <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                   </button>
@@ -177,23 +187,16 @@ export default class HomePage extends React.Component {
                                 <div className="modal-body">
                                   <form>
                                     <div className="padding-popup form-group">
-                                      <label for="recipient-name" className="form-control-label">メールアドレス:</label>
-                                      <input type="text" className="form-control" id="recipient-name"/>
-                                    </div>
+                                      <input placeholder="メールアドレス" type="text" className="form-control" id="recipient-name"/>
+                                    </div><br/>
                                     <div className="padding-popup form-group">
-                                      <label for="recipient-name" className="form-control-label">Github account:</label>
-                                      <input type="text" className="form-control" id="github"/>
+                                      <textarea cols="20" rows="10" placeholder="自己PR" className="padding-popup form-control" id="message-text"></textarea>
                                     </div>
-                                    <div className="padding-popup form-group">
-                                      <label for="message-text" className="form-control-label">自己PR:</label>
-                                      <textarea className="padding-popup form-control" id="message-text"></textarea>
-                                    </div>
-                                    <label>履歴書を送ってください</label><span className="text-left"><input type="file"/></span>
                                   </form>
                                 </div>
                                 <div className="modal-footer">
                                   <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                                  <button type="button" className="btn btn-primary">Send message</button>
+                                  <button type="button" className="btn btn-primary">送信</button>
                                 </div>
                             </div> 
                         </div>
@@ -212,27 +215,25 @@ export default class HomePage extends React.Component {
                         <br/><br/>
                     </section>
                 </div>
-                <div className="row row1">
-                <div className="japanese-text text-right col-md-4">2017.07.21</div>
-                <div className="japanese-text text-left col-md-8">
-                {`AIを活用したタクシー配車アプリの実用実
-験を今夏に開始`}</div>
-                
+                <div>
+                    <p className="date-text text-left ">2017.07.21</p>
+                    <a href="" className="text-left blue-text">
+                    {`AIを活用したタクシー配車アプリの実用実験を今夏に開始、早くも兆…`}</a>
                 </div>
-                <div className="row row1" id="grey-row">
-                <div className="japanese-text text-right col-md-4">2017.06.21</div>
-                <div className="japanese-text text-left col-md-8">
-                {`コーポレート・ガバナンス及び内部統制の
-強化に関するお知らせ`}</div>
-                
+                <div>
+                    <p className="date-text text-left">2017.06.21</p>
+                    <a href="" className="text-left blue-text">
+                    {`タローがコーポレートサイトのリニューアルを開始`}</a>
                 </div>
-                <div className="row row1 ">
-                <div className="japanese-text text-right col-md-4">2017.04.15</div>
-                <div id="third" className="japanese-text text-left col-md-8">
-                {`横浜市が「無人運転サービス・AIを用いた
-地域交通課題解決プロジェクト」を開始`}</div>
+                <div>
+                    <p className="date-text text-left">2017.04.15</p>
+                    <a href="" className="text-left blue-text">
+                    {`AIを活用したタクシー配車アプリの実用実験を今夏に開始`}</a>
                 </div>
-                <hr id="ACCESS"/>
+                <div className="text-center">
+                    <button className="btn btn-danger button-news" href=""> see more</button>
+                </div>
+                    <br/><br/><br/><br/><hr id="ACCESS"/>
                 </div>
                 
 
@@ -244,7 +245,6 @@ export default class HomePage extends React.Component {
                     <section>
                         <h2 className="section-heading" id="ACCESS-heading" ><big>ABOUT</big></h2>
                     </section>
-                    <br/>
                 </div>
                 <div className="modal-body row">
                     <div className="col-md-5 col-sm-5 no-padding">
@@ -274,12 +274,20 @@ export default class HomePage extends React.Component {
                                 <p>2014年8月6日</p>
                             </div>
                         </div>
+                        <div className="row">
+                            <div className="access-1 text-right col-md-4 col-sm-4 col-xs-4">
+                                <p>代表取締役</p>
+                            </div>
+                            <div className="access-2 text-left col-md-8 col-sm-8 col-xs-8">
+                                <p>出谷昌裕</p>
+                            </div>
+                        </div>
                     </div>
                     <div className="col-md-7 col-sm-7 no-padding">
                     <img className="img-responsive imgcenter" src="/images/map.png"/>
-                    <hr id="CONTACT"/>
                     </div>
-                </div>
+                </div><br/><br/>
+                <div className="access-2 text-center">Copyright Scoville All Rights Reserved</div>
             </div>
 
 
@@ -288,22 +296,12 @@ export default class HomePage extends React.Component {
 
 
 
-                {/* <!-- CONTACT --> */}
-                <div className="container" id="CONTACT-container" >
-                    <section>
-                        <h2 className="text-center section-heading"><big>{`CONTACT`}</big></h2>
-                    </section><br/><br/>
-                <div className="form-group">
-                  <div className="text-center">
-                    <button type="button" id="contact-button" className="button-grey btn" data-toggle="modal" data-target="#contact-form">
-                        <p id="word-contact">contact</p>
-                    </button>
-                  </div>
+                {/* <!-- CONTACT form --> */}
                     <div className="modal fade" id="contact-form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div className="modal-dialog" role="document">
                             <div className="modal-content">
                                 <div className="modal-header">
-                                  <h2 className="text-center modal-title" id="exampleModalLabel">CONTACT FORM</h2>
+                                  <h2 className="text-center modal-title" id="exampleModalLabel">Contact</h2>
                                   <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                   </button>
@@ -338,8 +336,6 @@ export default class HomePage extends React.Component {
                                 </div>
                             </div> 
                         </div>
-                    </div>
-                </div>
                 </div>
             </div>
         )
