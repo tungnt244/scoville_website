@@ -12,9 +12,9 @@ import (
 	"github.com/joho/godotenv"
 	"gopkg.in/gomail.v2"
 	"log"
-	"os"
-
 	"net/http"
+	"os"
+	"time"
 )
 
 const (
@@ -156,11 +156,11 @@ func DeleteUser(c echo.Context) error {
 	_Delete news with the given id
 */
 func CreateNews(c echo.Context) error {
-	n := new(model.News)
-	if err := c.Bind(n); err != nil {
+	news := new(model.News)
+	if err := c.Bind(news); err != nil {
 		return c.JSON(http.StatusBadRequest, err)
 	}
-	err := db.Manager.SaveNews(n)
+	err := db.Manager.SaveNews(news)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, err.Error())
 	}
@@ -197,12 +197,12 @@ func GetAllNews(c echo.Context) error {
 
 func UpdateNews(c echo.Context) error {
 	newsId := c.Param("id")
-	n := new(model.News)
-	if err := c.Bind(n); err != nil {
+	news := new(model.News)
+	if err := c.Bind(news); err != nil {
 		return c.JSON(http.StatusBadRequest, err)
 	}
 
-	_, err := db.Manager.UpdateNewsInfo(newsId, n)
+	_, err := db.Manager.UpdateNewsInfo(newsId, news)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, err.Error())
 	}
@@ -235,6 +235,17 @@ func DeleteNews(c echo.Context) error {
 	_Update status of formRecruitment
 	_Delete formRecruitment with the given id
 */
+
+func GetFormRecruitment(c echo.Context) error {
+	formRecruitmentId := c.Param("id")
+	formRecruitment, err := db.Manager.GetFormRecruitmentById(formRecruitmentId)
+	if err != nil {
+		return c.JSON(http.StatusNotFound, "Not existed")
+
+	}
+	return c.JSON(http.StatusOK, formRecruitment)
+
+}
 func GetAllFormRecruitment(c echo.Context) error {
 	var formRecruitments []model.Form_recruitment
 	var err error
@@ -266,13 +277,13 @@ func GetEngineerForm(c echo.Context) error {
 }
 
 func UpdateFormRecruitment(c echo.Context) error {
-	formId := c.Param("id")
-	f := new(model.Form_recruitment)
-	if err := c.Bind(f); err != nil {
+	formRecruitmentId := c.Param("id")
+	formRecruitment := new(model.Form_recruitment)
+	if err := c.Bind(formRecruitment); err != nil {
 		return c.JSON(http.StatusBadRequest, err)
 	}
 
-	_, err := db.Manager.UpdateFormStatus(formId, f.Status)
+	_, err := db.Manager.UpdateFormStatus(formRecruitmentId, formRecruitment.Status)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, err.Error())
 	}
@@ -288,19 +299,44 @@ func CreateFormRecruitment(c echo.Context) error {
 	email := os.Getenv("EMAIL")
 	pass := os.Getenv("PASS")
 
-	api := slack.New(token)
-
-	err = api.ChatPostMessage(channelName, "You received a new form!", nil)
+	formRecruitment := new(model.Form_recruitment)
+	if err := c.Bind(formRecruitment); err != nil {
+		return c.JSON(http.StatusBadRequest, err)
+	}
+	if formRecruitment.LinkGithub != "" {
+		formRecruitment.Position = "Engineer"
+	}
+	err = db.Manager.SaveFormRecruitment(formRecruitment)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, err.Error())
 	}
+	// Connect to Slack
+	api := slack.New(token)
 
+	err = api.ChatPostMessage(channelName, "*YOU RECEIVED THE NEW FORM RECRUITMENT!*", &slack.ChatPostMessageOpt{
+		Username:  "Helper Bot",
+		IconEmoji: ":new:",
+		Attachments: []*slack.Attachment{
+			{
+				Color:      "#36a64f",
+				Title:      "FORM CONTENT (see full)",
+				TitleLink:  "https://sc0ville.com/",
+				Text:       "*Email:* " + formRecruitment.Email + "\n*SelfPR:* " + formRecruitment.SelfPR[:200] + "...",
+				Footer:     "Time Now:",
+				FooterIcon: ":new:",
+				TimeStamp:  time.Now().Unix(),
+			},
+		},
+	})
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, err.Error())
+	}
+	// Send the Email
 	m := gomail.NewMessage()
 	m.SetHeader("From", "thien@sc0ville.com")
 	m.SetHeader("To", "thien@sc0ville.com")
-	m.SetHeader("Subject", "I am testing")
-	m.SetBody("text/html", "Hello <b>Thien</b> and <i>This is me</i>!")
-
+	m.SetHeader("Subject", "RECRUITMENT FORM")
+	m.SetBody("text/html", "Hello! <br><br><b>APPLICATION FORM CONTENT</b><br><br><b>Email: </b>"+formRecruitment.Email+"<br><br><b>SelfPR: </b>"+formRecruitment.SelfPR+"<br><br><b>LinkGithub: </b>"+formRecruitment.LinkGithub+"<br><br>Please go and check it on Website https://sc0ville.com/")
 	d := gomail.NewDialer("smtp.gmail.com", 465, email, pass)
 
 	// Send the email to Bob, Cora and Dan.
@@ -308,16 +344,5 @@ func CreateFormRecruitment(c echo.Context) error {
 		panic(err)
 	}
 
-	f := new(model.Form_recruitment)
-	if err := c.Bind(f); err != nil {
-		return c.JSON(http.StatusBadRequest, err)
-	}
-	if f.LinkGithub != "" {
-		f.Position = "Engineer"
-	}
-	err = db.Manager.SaveFormRecruitment(f)
-	if err != nil {
-		return c.JSON(http.StatusInternalServerError, err.Error())
-	}
 	return c.JSON(http.StatusOK, "Successful Created")
 }
