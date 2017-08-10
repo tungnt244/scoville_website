@@ -3,7 +3,7 @@ import {Form, Col, ControlLabel, FormControl, FormGroup, Button, Alert} from 're
 import axios from 'axios'
 import {url} from '../config'
 import {browserHistory} from 'react-router'
-import checkValidToken from './checkValidToken'
+import checkValidToken from './CheckValidToken'
 
 export default class AdminLogin extends Component {
 

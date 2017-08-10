@@ -1,18 +1,18 @@
-import React from 'react'
+import React, {Component} from 'react'
 import { Route, IndexRoute } from 'react-router'
-import Layout from './components/Layout';
-import NotFoundPage from './components/NotFoundPage';
-import HomePage from './components/HomePage';
-import AdminLogin from './components/AdminLogin';
-import CMSLayout from './components/CMS/CMSLayout';
-import CMSManager from './components/CMS/CMSManager';
-import CMSEditor from './components/CMS/CMSEditor';
-import CMSArticles from './components/CMS/CMSArticles';
-import CMSSingleArticle from './components/CMS/CMSSingleArticle';
-import UMSManager from './components/UMS/UMSManager';
-import UMSUser from './components/UMS/UMSUser';
+import Layout from './Layout';
+import NotFoundPage from './NotFoundPage';
+import HomePage from './HomePage';
+import AdminLogin from './AdminLogin';
+import CMSLayout from './CMS/CMSLayout';
+import CMSManager from './CMS/CMSManager';
+import CMSEditor from './CMS/CMSEditor';
+import CMSArticles from './CMS/CMSArticles';
+import CMSSingleArticle from './CMS/CMSSingleArticle';
+import UMSManager from './UMS/UMSManager';
+import UMSUser from './UMS/UMSUser';
 
-const routes = (
+var routes = (
     <Route path="/" component={Layout}>
         <IndexRoute component={HomePage}/>
         <Route path='admin/login' component={AdminLogin}/>
