@@ -229,8 +229,8 @@ func DeleteNews(c echo.Context) error {
 /*
 	Function to controllr formRecruitment api
 	_Get all formRecruitment
-	_Get all general form
-	_Get all engineer form
+	_Get all general formRecruitment
+	_Get all engineer formRecruitment
 	_Create a formRecruitment
 	_Update status of formRecruitment
 	_Delete formRecruitment with the given id
@@ -337,6 +337,92 @@ func CreateFormRecruitment(c echo.Context) error {
 	m.SetHeader("To", "thien@sc0ville.com")
 	m.SetHeader("Subject", "RECRUITMENT FORM")
 	m.SetBody("text/html", "Hello! <br><br><b>APPLICATION FORM CONTENT</b><br><br><b>Email: </b>"+formRecruitment.Email+"<br><br><b>SelfPR: </b>"+formRecruitment.SelfPR+"<br><br><b>LinkGithub: </b>"+formRecruitment.LinkGithub+"<br><br>Please go and check it on Website https://sc0ville.com/")
+	d := gomail.NewDialer("smtp.gmail.com", 465, email, pass)
+
+	// Send the email to Bob, Cora and Dan.
+	if err := d.DialAndSend(m); err != nil {
+		panic(err)
+	}
+
+	return c.JSON(http.StatusOK, "Successful Created")
+}
+
+func DeleteFormRecruitment(c echo.Context) error {
+	formRecruitmentId := c.Param("id")
+
+	formRecruitment, err := db.Manager.GetFormRecruitmentById(formRecruitmentId)
+	if err != nil {
+		return c.JSON(http.StatusNotFound, err.Error())
+
+	}
+
+	err = db.Manager.DeleteFormRecruitment(formRecruitment)
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, err.Error())
+	}
+	return c.JSON(http.StatusOK, "Successful deleted")
+
+}
+
+/*
+	Function to controllr formContact api
+	_Get all formContact
+	_Get all general formContact
+	_Get all engineer formContact
+	_Create a formContact
+	_Update status of formContact
+	_Delete formContact with the given id
+*/
+
+func CreateFormContact(c echo.Context) error {
+	//Load values in environment files
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
+	email := os.Getenv("EMAIL")
+	pass := os.Getenv("PASS")
+
+	formContact := new(model.Form_contact)
+	if err := c.Bind(formContact); err != nil {
+		return c.JSON(http.StatusBadRequest, err)
+	}
+
+	err = db.Manager.SaveFormContact(formContact)
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, err.Error())
+	}
+	// Connect to Slack
+	api := slack.New(token)
+
+	err = api.ChatPostMessage(channelName, "*YOU RECEIVED THE NEW FORM CONTACT!*", &slack.ChatPostMessageOpt{
+		Username:  "Helper Bot",
+		IconEmoji: ":star2:",
+		Attachments: []*slack.Attachment{
+			{
+				Color:     "#36a64f",
+				Title:     "FORM CONTENT (see full)",
+				TitleLink: "https://sc0ville.com/",
+				Text: "*Company:* " + formContact.CompanyName + "\n*Staff:* " +
+					formContact.StaffName + "\n*Email:* " + formContact.EmailAddress + "\n*Phone:* " +
+					formContact.PhoneNumber + "\n*Description:* " + formContact.DescriptionOfContact[:200] + "...",
+				Footer:     "Time Now:",
+				FooterIcon: ":new:",
+				TimeStamp:  time.Now().Unix(),
+			},
+		},
+	})
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, err.Error())
+	}
+	// Send the Email
+	m := gomail.NewMessage()
+	m.SetHeader("From", "thien@sc0ville.com")
+	m.SetHeader("To", "thien@sc0ville.com")
+	m.SetHeader("Subject", "RECRUITMENT FORM")
+	m.SetBody("text/html", "Hello! <br><br><b>CONTACT FORM CONTENT</b><br><br><b>Company: </b>"+formContact.CompanyName+"<br><br><b>Staff: </b>"+formContact.StaffName+
+		"<br><br><b>Email: </b>"+formContact.EmailAddress+"<br><br><b>Phone: </b>"+formContact.PhoneNumber+"<br><br><b>Description: </b>"+formContact.DescriptionOfContact+
+		"<br><br><b>LinkGithub: </b>"+formRecruitment.LinkGithub+"<br><br>Please go and check it on Website https://sc0ville.com/")
 	d := gomail.NewDialer("smtp.gmail.com", 465, email, pass)
 
 	// Send the email to Bob, Cora and Dan.

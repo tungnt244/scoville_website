@@ -38,5 +38,6 @@ type Form_contact struct {
 	EmailAddress         string    `json:"email_address"`
 	PhoneNumber          string    `gorm:"default:'General Staff'" json:"phone_number"`
 	DescriptionOfContact string    `gorm:"string:20;default:'Not Processed'" json:"description_of_contact"`
+	Status               string    `gorm:"string:20;default:'Not Processed'" json:"status"`
 	CreatedAt            time.Time `gorm:"column:created_at;type:datetime;default:CURRENT_TIMESTAMP"`
 }

@@ -33,3 +33,9 @@ func (m *DBManager) SaveFormRecruitment(form *model.Form_recruitment) (err error
 		Position: form.Position, Status: form.Status}).Error
 	return
 }
+
+func (m *DBManager) DeleteFormRecruitment(form model.Form_recruitment) (err error) {
+	err = m.database.Delete(&form).Error
+	return
+
+}

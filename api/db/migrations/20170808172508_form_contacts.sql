@@ -7,6 +7,7 @@ CREATE TABLE form_contacts (
     email_address  varchar(100)  NULL,
     phone_number varchar(50)  NOT NULL ,
     description_of_contact text NOT NULL ,
+    status varchar(50) NOT NULL DEFAULT 'Not Processed',
     created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     
     PRIMARY KEY(id)

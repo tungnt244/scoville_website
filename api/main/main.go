@@ -63,8 +63,14 @@ func main() {
 	e.GET("/forms/recruitment/engineer", handler.GetEngineerForm)
 	e.PUT("/forms/recruitment/:id", handler.UpdateFormRecruitment)
 	e.POST("/forms/recruitment", handler.CreateFormRecruitment)
-
+	e.DELETE("/forms/recruitment/:id", handler.DeleteFormRecruitment)
 	//RESTFUL api for formContact
-	//Connect to localhost with port:4444
+	// e.GET("/forms/contact/:id", handler.GetFormContact)
+	// e.GET("/forms/recruitment", handler.GetAllFormRecruitment)
+	// e.GET("/forms/recruitment/general", handler.GetGeneralForm)
+	// e.GET("/forms/recruitment/engineer", handler.GetEngineerForm)
+	// e.PUT("/forms/recruitment/:id", handler.UpdateFormRecruitment)
+	e.POST("/forms/contact", handler.CreateFormContact)
+	// //Connect to localhost with port:4444
 	e.Logger.Fatal(e.Start(":4444"))
 }
