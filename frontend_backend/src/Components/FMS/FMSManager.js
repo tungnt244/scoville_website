@@ -11,15 +11,15 @@ export default class FMSManager extends Component {
     constructor(props){
         super(props)
         this.state = {
-            users : []
+            forms : []
         }
     }
 
-    viewButton = (cell) => {
+    viewButton = (cell, row) => {
         return (
         <Button bsStyle="primary"
             onClick={ () => {
-                browserHistory.push('/admin/forms/' + row.ID)
+                browserHistory.push('/admin/forms/' + row.id)
             } }
         >View</Button>
         );
@@ -46,10 +46,10 @@ export default class FMSManager extends Component {
     }
 
     componentDidMount(){
-        axios.get(api_url +'/users').then(response => {
+        axios.get(api_url +'/forms/recruitment').then(response => {
             console.log('data', response.data)
             this.setState({
-                users: response.data
+                forms: response.data
             })
         }).catch(error => {
             console.log('error: ', error)
@@ -57,14 +57,14 @@ export default class FMSManager extends Component {
     }
 
     render(){
-        let users = this.state.users
+        let forms = this.state.forms
         return(
             <div>
                 <Grid>
                     <Row className="show-grid">
-                        <h1>Manage Users</h1>
+                        <h1>Manage Forms</h1>
                     </Row>
-                    <Row className="show-grid">
+                    {/* <Row className="show-grid">
                         <Button bsStyle="success" onClick={()=>{
                         browserHistory.push('/admin/users/create')
                         }}>Create</Button>
@@ -73,15 +73,18 @@ export default class FMSManager extends Component {
                         <Button bsStyle="primary" onClick={()=>{
                         browserHistory.push('/admin/cms')
                         }}>CMS Manager</Button>
-                    </Row>
+                    </Row> */}
                 </Grid>
                 
-                <BootstrapTable data={users} >
-                    <TableHeaderColumn dataField="ID" isKey={true} >User ID</TableHeaderColumn> 
+                <BootstrapTable data={forms} >
+                    <TableHeaderColumn dataField="id" isKey={true} >Form ID</TableHeaderColumn> 
                     <TableHeaderColumn dataField="email" >Email</TableHeaderColumn>
+                    <TableHeaderColumn dataField="position">Position</TableHeaderColumn>
+                    <TableHeaderColumn dataField="status">Status</TableHeaderColumn>
                     <TableHeaderColumn dataField="CreatedAt">Created at</TableHeaderColumn>
-                    <TableHeaderColumn dataFormat={this.editButton}>Edit</TableHeaderColumn>
-                    <TableHeaderColumn dataFormat={(cell,row) => this.deleteButton(cell, row)}>Delete</TableHeaderColumn>
+                    <TableHeaderColumn dataFormat={this.viewButton}>View</TableHeaderColumn>
+                    {/* <TableHeaderColumn dataFormat={this.editButton}>Edit</TableHeaderColumn> */}
+                    {/* <TableHeaderColumn dataFormat={(cell,row) => this.deleteButton(cell, row)}>Delete</TableHeaderColumn> */}
                 </BootstrapTable>
             </div>
         )
