@@ -70,7 +70,7 @@ func main() {
 	// e.GET("/forms/recruitment/general", handler.GetGeneralForm)
 	// e.GET("/forms/recruitment/engineer", handler.GetEngineerForm)
 	// e.PUT("/forms/recruitment/:id", handler.UpdateFormRecruitment)
-	e.POST("/forms/contact", handler.CreateFormContact)
+	// e.POST("/forms/contact", handler.CreateFormContact)
 	// //Connect to localhost with port:4444
 	e.Logger.Fatal(e.Start(":4444"))
 }
