@@ -8,7 +8,7 @@ func (m *DBManager) GetFormRecruitmentById(id string) (form model.Form_recruitme
 	err = m.database.Find(&form, id).Error
 	return
 }
-func (m *DBManager) GetAllForms() (form []model.Form_recruitment, err error) {
+func (m *DBManager) GetAllFormsRecruitment() (form []model.Form_recruitment, err error) {
 	err = m.database.Find(&form).Error
 	return
 }
@@ -23,7 +23,7 @@ func (m *DBManager) GetEngineerForm() (form []model.Form_recruitment, err error)
 	return
 }
 
-func (m *DBManager) UpdateFormStatus(id string, status string) (form model.Form_recruitment, err error) {
+func (m *DBManager) UpdateFormRecruitmentStatus(id string, status string) (form model.Form_recruitment, err error) {
 	err = m.database.Find(&form, id).Update(&model.Form_recruitment{Status: status}).Error
 	return
 }
@@ -32,4 +32,10 @@ func (m *DBManager) SaveFormRecruitment(form *model.Form_recruitment) (err error
 	err = m.database.Create(&model.Form_recruitment{Email: form.Email, SelfPR: form.SelfPR, LinkGithub: form.LinkGithub,
 		Position: form.Position, Status: form.Status}).Error
 	return
+}
+
+func (m *DBManager) DeleteFormRecruitment(form model.Form_recruitment) (err error) {
+	err = m.database.Delete(&form).Error
+	return
+
 }

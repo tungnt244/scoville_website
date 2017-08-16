@@ -14,6 +14,8 @@ import CMSArticles from './CMS/CMSArticles';
 import CMSSingleArticle from './CMS/CMSSingleArticle';
 import UMSManager from './UMS/UMSManager';
 import UMSUser from './UMS/UMSUser';
+import FMSManager from './FMS/FMSManager';
+import FMSForm from './FMS/FMSForm';
 
 var routes = (
     <Route path="/" component={Layout}>
