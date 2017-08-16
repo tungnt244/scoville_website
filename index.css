@@ -253,7 +253,7 @@ img#mainimage.img-responsive{
   margin-right: 1.2vw;
 }
 #contact-form{
-  z-index: 20000;
+  margin-top: 7%;
 }
 .button-grey{
   width: 100%;
@@ -299,6 +299,7 @@ img#mainimage.img-responsive{
 }
 #news-container{
   width:60%;
+  padding-top: 8%;
 
 }
 .blue-text{
@@ -365,6 +366,7 @@ img#mainimage.img-responsive{
   margin-bottom: 4%;
 }
 #COMPANY-container{
+    padding-top: 8%;
     position: relative;
     background: #F4F6F7 ;
     overflow: hidden;
@@ -387,7 +389,7 @@ img#mainimage.img-responsive{
     -o-background-size:cover;
     background-size:cover;
     background-position:center;
-    padding-top: 2%;
+    padding-top: 10%;
     padding-bottom: 10%;
 }
 .big-recruit{
@@ -438,13 +440,14 @@ img#mainimage.img-responsive{
   border-top: none;
 }
 #SERVICES-container{
-  padding-bottom: 7.5%;
+  padding-top: 7%;
+  padding-bottom: 7.5%; 
 }
 #services-text-container{
   width: 80%;
 }
 .recruit-form{
-  z-index: 20000;
+  margin-top: 10%;
 
 }
 .bottom-padding{
@@ -455,6 +458,7 @@ img#mainimage.img-responsive{
 }
 #ACCESS-container{
   background-color: #483030;
+  padding-top: 7%;
   padding-bottom: 8%; 
 }
 .left-padding{
@@ -468,10 +472,10 @@ img#mainimage.img-responsive{
   padding-top:2vmax;
 }
 .no-padding{
-  margin-right: 0px;
+  margin-right: 0px; 
   padding-right: 0px;
   margin-left: 0px;
-  padding-left: 0px;
+  padding-left: 0px;   
 }
 div.navbar-header{
   height: 80%;
