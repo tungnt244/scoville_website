@@ -17,6 +17,7 @@ export default class NewsSummary extends Component {
     }
 
     render(){
+        console.log('hello')
         if(this.state.article)
             return(
                 <div>

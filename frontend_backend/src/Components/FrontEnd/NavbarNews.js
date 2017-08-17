@@ -4,7 +4,7 @@ export default class NavbarNews extends React.Component{
 
   render(){
     return(
-      <nav className="navbar navbar-inverse fixed" id="news-navbar">
+      <nav className="navbar navbar-inverse" id="news-navbar">
           <div id="news-nav-container" className="container-fluid">
               <div>
                   <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">  

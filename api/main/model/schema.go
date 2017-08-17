@@ -15,11 +15,12 @@ type User struct {
 
 type News struct {
 	// gorm.Model
-	ID          uint   `gorm:"primary_key" json:"id"`
-	Title       string `gorm:"size:255" json:"title" validate:"required"`
-	Content     string `json:"content"`
-	Picture     string `json:"picture"`
-	Description string `grom:"size:255" json:"description"`
+	ID          uint      `gorm:"primary_key" json:"id"`
+	Title       string    `gorm:"size:255" json:"title" validate:"required"`
+	Content     string    `json:"content"`
+	Picture     string    `json:"picture"`
+	Description string    `grom:"size:255" json:"description"`
+	CreatedAt   time.Time `gorm:"column:created_at;type:datetime;default:CURRENT_TIMESTAMP"`
 }
 
 type Form_recruitment struct {
