@@ -19,7 +19,7 @@ export default class RecruitmentSection extends React.Component{
                         エントリー
                     </button>
                    </div>
-                    <div className="recruit-form modal fade" id="apply-engineer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="recruit-form modal fade" id="apply-engineer" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div className="modal-dialog" role="document">
                             <div className="modal-content">
                                 <div className="modal-header">
@@ -61,7 +61,7 @@ export default class RecruitmentSection extends React.Component{
                         エントリー
                     </button>
                   </div>
-                    <div className="recruit-form modal fade " id="apply-sale" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="recruit-form modal fade " id="apply-sale" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div className="modal-dialog" role="document">
                             <div className="modal-content">
                                 <div className="modal-header">

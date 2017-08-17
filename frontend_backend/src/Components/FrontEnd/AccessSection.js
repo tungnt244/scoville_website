@@ -1,4 +1,5 @@
 import React from  'react'
+import Map from './Map'
 
 export default class AccessSection extends React.Component{
     render(){
@@ -48,7 +49,7 @@ export default class AccessSection extends React.Component{
                         </div>
                     </div>
                     <div className="col-md-7 col-sm-7 no-padding">
-                    <img className="img-responsive imgcenter" src="/images/map.png"/>
+                    <Map/>
                     </div>
                 </div><br/><br/>
                 <div className="access-2 text-center">Copyright Scoville All Rights Reserved</div>

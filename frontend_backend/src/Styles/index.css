@@ -364,6 +364,10 @@ img#mainimage.img-responsive{
   color: #ffffff;
   margin-bottom: 4%;
 }
+#map {
+  height: 400px;
+  width: 100%;
+ }
 #COMPANY-container{
     position: relative;
     background: #F4F6F7 ;
