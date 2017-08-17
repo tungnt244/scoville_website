@@ -6,8 +6,9 @@ export default class HomePage extends React.Component {
         return(
             <div className="home-page">
 
+
                 <div className="img-container">
-                    <img className="img-responsive" id="mainimage" src="/images/mainpic.png" alt="Norway" />
+                    <img className="img-responsive" id="mainimage" src="/images/mainpic.png" alt="cannot load image" />
                 </div>
                 <nav className="navbar navbar-inverse" id="my-navbar">
                     <div id="nav-container" className="container-fluid">
@@ -36,7 +37,6 @@ export default class HomePage extends React.Component {
                                 </li>
                             </ul>
                         </div>
-                        {/* <!-- end of container --> */}
                     </div>
                 </nav>
                 {/* <!-- end of navbar --> */}
@@ -231,7 +231,7 @@ export default class HomePage extends React.Component {
                     {`AIを活用したタクシー配車アプリの実用実験を今夏に開始`}</a>
                 </div>
                 <div className="text-center">
-                    <button className="btn btn-danger button-news" href=""> see more</button>
+                    <button className="btn button-news" href=""><span className="btn-word">see more</span></button>
                 </div>
                     <br/><br/><br/><br/><hr id="ACCESS"/>
                 </div>
@@ -336,7 +336,9 @@ export default class HomePage extends React.Component {
                                 </div>
                             </div> 
                         </div>
-                </div>
+                    </div>
+
+
             </div>
         )
     }

@@ -5,8 +5,8 @@ $(document).ready(function() {
       //.log to determine when you want the 
       //nav bar to stick.  
       var img = document.getElementById('mainimage');
+      if(!img) return
       var hi = img.clientHeight;
-      console.log($(window).scrollTop())
     if ($(window).scrollTop() > hi) {
       $('#my-navbar').addClass('fixed');
     }
