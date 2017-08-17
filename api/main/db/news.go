@@ -20,7 +20,7 @@ func (m *DBManager) GetAllNews() (n []model.News, err error) {
 }
 
 func (m *DBManager) GetAllBriefInfo() (n []model.News, err error) {
-	err = m.database.Select([]string{"id", "title", "picture", "description"}).Find(&n).Error
+	err = m.database.Select([]string{"id", "title", "picture", "description", "created_at"}).Find(&n).Error
 	return
 }
 

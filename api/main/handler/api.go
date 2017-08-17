@@ -58,12 +58,18 @@ func CreateUser(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, "Missing data")
 
 	}
+
+	checkUser, _ := db.Manager.GetUserByEmail(u.Email)
+
+	if checkUser.Email != "" {
+		return c.JSON(http.StatusBadRequest, "Email already existed")
+	}
+
 	//Encrypted password before saving in database
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(u.Password), bcrypt.DefaultCost)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, err.Error())
 	}
-
 	if helper.ValidateEmail(u.Email) == false {
 		return c.JSON(http.StatusBadRequest, "Not a valid Email")
 	}
